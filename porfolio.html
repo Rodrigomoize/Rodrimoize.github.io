@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Header principal */
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: white;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            border: 6px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .name {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .description {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Sección de aptitudes */
+        .skills-section {
+            margin: 4rem 0;
+        }
+
+        .skills-title {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .skills-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            color: white;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .skill-bar {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2c3e50);
+            border-radius: 10px;
+            transition: width 2s ease-in-out;
+            width: 0;
+        }
+
+        /* Proyectos */
+        .projects-section {
+            margin: 4rem 0;
+        }
+
+        .projects-title {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+            color: white;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Modal/Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        .modal h2 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .modal h3 {
+            color: #555;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        .modal p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* Animaciones de entrada */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .name {
+                font-size: 2.5rem;
+            }
+            
+            .description {
+                font-size: 1.1rem;
+            }
+            
+            .skills-categories {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Partículas de fondo */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <div class="header fade-in">
+            <div class="profile-photo">
+                👨‍💼
+            </div>
+            <h1 class="name">Tu Nombre Aquí</h1>
+            <p class="description">
+                Desarrollador Full Stack especializado en tecnologías web modernas. 
+                Con experiencia en el desarrollo de aplicaciones escalables y soluciones digitales innovadoras. 
+                Comprometido con las mejores prácticas de desarrollo y la entrega de productos de alta calidad.
+            </p>
+        </div>
+
+        <!-- Aptitudes -->
+        <div class="skills-section">
+            <h2 class="skills-title fade-in">Mis Aptitudes</h2>
+            <div class="skills-categories">
+                <div class="skill-category fade-in" onclick="openSkillModal('frontend')">
+                    <h3 class="category-title">💻 Frontend</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>HTML/CSS</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="90"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>JavaScript</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>React</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="80"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in" onclick="openSkillModal('backend')">
+                    <h3 class="category-title">⚙️ Backend</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Node.js</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="75"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Python</span>
+                            <span>70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="70"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Bases de Datos</span>
+                            <span>65%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="65"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in" onclick="openSkillModal('tools')">
+                    <h3 class="category-title">🛠️ Herramientas</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Git</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Docker</span>
+                            <span>60%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="60"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>AWS</span>
+                            <span>55%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="55"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Proyectos -->
+        <div class="projects-section">
+            <h2 class="projects-title fade-in">Mis Proyectos</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in" onclick="openProjectModal('proyecto1')">
+                    <h3 class="project-title">🛒 E-Commerce Platform</h3>
+                    <p class="project-description">
+                        Plataforma completa de comercio electrónico con React y Node.js
+                    </p>
+                </div>
+                
+                <div class="project-card fade-in" onclick="openProjectModal('proyecto2')">
+                    <h3 class="project-title">📱 App Móvil de Tareas</h3>
+                    <p class="project-description">
+                        Aplicación de gestión de tareas con sincronización en la nube
+                    </p>
+                </div>
+                
+                <div class="project-card fade-in" onclick="openProjectModal('proyecto3')">
+                    <h3 class="project-title">📊 Dashboard Analytics</h3>
+                    <p class="project-description">
+                        Panel de control con visualizaciones de datos en tiempo real
+                    </p
+                </div>
+                
+                <div class="project-card fade-in" onclick="openProjectModal('proyecto4')">
+                    <h3 class="project-title">🔌 API REST</h3>
+                    <p class="project-description">
+                        API robusta con autenticación JWT y documentación completa
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para aptitudes -->
+    <div class="modal" id="skillModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('skillModal')">&times;</button>
+            <div id="skillModalContent"></div>
+        </div>
+    </div>
+
+    <!-- Modal para proyectos -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('projectModal')">&times;</button>
+            <div id="projectModalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Datos de aptitudes
+        const skillsData = {
+            frontend: {
+                title: "Desarrollo Frontend",
+                description: "Especializado en crear interfaces de usuario modernas y responsive",
+                details: `
+                    <h3>Tecnologías Principales:</h3>
+                    <p>• HTML5 semántico y accesible</p>
+                    <p>• CSS3 avanzado con Flexbox y Grid</p>
+                    <p>• JavaScript ES6+ y programación asíncrona</p>
+                    <p>• React.js con hooks y context API</p>
+                    <p>• Frameworks CSS como Tailwind y Bootstrap</p>
+                    
+                    <h3>Experiencia:</h3>
+                    <p>Más de 3 años desarrollando aplicaciones web interactivas y responsive. Experiencia en optimización de rendimiento y mejores prácticas de SEO.</p>
+                `
+            },
+            backend: {
+                title: "Desarrollo Backend",
+                description: "Creación de APIs robustas y arquitecturas escalables",
+                details: `
+                    <h3>Tecnologías Principales:</h3>
+                    <p>• Node.js con Express.js</p>
+                    <p>• Python con Django y Flask</p>
+                    <p>• Bases de datos SQL y NoSQL</p>
+                    <p>• Autenticación JWT y OAuth</p>
+                    <p>• Microservicios y arquitectura REST</p>
+                    
+                    <h3>Experiencia:</h3>
+                    <p>Desarrollo de sistemas backend escalables, manejo de grandes volúmenes de datos y implementación de medidas de seguridad avanzadas.</p>
+                `
+            },
+            tools: {
+                title: "Herramientas y DevOps",
+                description: "Dominio de herramientas modernas para desarrollo y despliegue",
+                details: `
+                    <h3>Herramientas Principales:</h3>
+                    <p>• Git y GitHub para control de versiones</p>
+                    <p>• Docker para containerización</p>
+                    <p>• AWS para cloud computing</p>
+                    <p>• CI/CD con GitHub Actions</p>
+                    <p>• Monitoring con herramientas modernas</p>
+                    
+                    <h3>Experiencia:</h3>
+                    <p>Implementación de flujos de trabajo automatizados, despliegue en la nube y mantenimiento de infraestructura escalable.</p>
+                `
+            }
+        };
+
+        // Datos de proyectos
+        const projectsData = {
+            proyecto1: {
+                title: "E-Commerce Platform",
+                description: "Plataforma completa de comercio electrónico",
+                details: `
+                    <h3>Descripción del Proyecto:</h3>
+                    <p>Desarrollo de una plataforma de comercio electrónico completa con carrito de compras, sistema de pagos integrado y panel de administración.</p>
+                    
+                    <h3>Tecnologías Utilizadas:</h3>
+                    <p>• Frontend: React.js con Redux</p>
+                    <p>• Backend: Node.js con Express</p>
+                    <p>• Base de datos: MongoDB</p>
+                    <p>• Pagos: Stripe API</p>
+                    
+                    <h3>Características Principales:</h3>
+                    <p>• Catálogo de productos con filtros avanzados</p>
+                    <p>• Carrito de compras persistente</p>
+                    <p>• Sistema de usuarios y autenticación</p>
+                    <p>• Panel de administración completo</p>
+                    <p>• Responsive design</p>
+                `
+            },
+            proyecto2: {
+                title: "App Móvil de Tareas",
+                description: "Aplicación de gestión de tareas multiplataforma",
+                details: `
+                    <h3>Descripción del Proyecto:</h3>
+                    <p>Aplicación móvil para gestión de tareas personales con sincronización en tiempo real y colaboración en equipo.</p>
+                    
+                    <h3>Tecnologías Utilizadas:</h3>
+                    <p>• React Native para desarrollo multiplataforma</p>
+                    <p>• Firebase para backend y sincronización</p>
+                    <p>• Redux para gestión de estado</p>
+                    <p>• Push notifications</p>
+                    
+                    <h3>Características Principales:</h3>
+                    <p>• Creación y organización de tareas</p>
+                    <p>• Recordatorios y notificaciones</p>
+                    <p>• Colaboración en tiempo real</p>
+                    <p>• Modo offline</p>
+                    <p>• Estadísticas de productividad</p>
+                `
+            },
+            proyecto3: {
+                title: "Dashboard Analytics",
+                description: "Panel de control con visualizaciones de datos",
+                details: `
+                    <h3>Descripción del Proyecto:</h3>
+                    <p>Dashboard interactivo para análisis de datos empresariales con gráficos dinámicos y reportes automatizados.</p>
+                    
+                    <h3>Tecnologías Utilizadas:</h3>
+                    <p>• React.js con TypeScript</p>
+                    <p>• D3.js para visualizaciones</p>
+                    <p>• Node.js para API</p>
+                    <p>• PostgreSQL para datos</p>
+                    
+                    <h3>Características Principales:</h3>
+                    <p>• Gráficos interactivos en tiempo real</p>
+                    <p>• Filtros y segmentación de datos</p>
+                    <p>• Exportación de reportes</p>
+                    <p>• Alertas automáticas</p>
+                    <p>• Diseño responsive</p>
+                `
+            },
+            proyecto4: {
+                title: "API REST",
+                description: "API robusta con documentación completa",
+                details: `
+                    <h3>Descripción del Proyecto:</h3>
+                    <p>Desarrollo de API REST escalable para aplicaciones empresariales con documentación completa y pruebas automatizadas.</p>
+                    
+                    <h3>Tecnologías Utilizadas:</h3>
+                    <p>• Node.js con Express.js</p>
+                    <p>• JWT para autenticación</p>
+                    <p>• Swagger para documentación</p>
+                    <p>• Jest para testing</p>
+                    
+                    <h3>Características Principales:</h3>
+                    <p>• Endpoints RESTful bien estructurados</p>
+                    <p>• Autenticación y autorización segura</p>
+                    <p>• Documentación interactiva</p>
+                    <p>• Testing automatizado</p>
+                    <p>• Rate limiting y validación</p>
+                `
+            }
+        };
+
+        // Funciones para modales
+        function openSkillModal(skillType) {
+            const skill = skillsData[skillType];
+            document.getElementById('skillModalContent').innerHTML = `
+                <h2>${skill.title}</h2>
+                <p><strong>${skill.description}</strong></p>
+                ${skill.details}
+            `;
+            document.getElementById('skillModal').classList.add('show');
+        }
+
+        function openProjectModal(projectType) {
+            const project = projectsData[projectType];
+            document.getElementById('projectModalContent').innerHTML = `
+                <h2>${project.title}</h2>
+                <p><strong>${project.description}</strong></p>
+                ${project.details}
+            `;
+            document.getElementById('projectModal').classList.add('show');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+        }
+
+        // Cerrar modal al hacer click fuera
+        window.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('show');
+            }
+        });
+
+        // Animación de barras de progreso
+        function animateSkillBars() {
+            const progressBars = document.querySelectorAll('.skill-progress');
+            progressBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                setTimeout(() => {
+                    bar.style.width = width + '%';
+                }, 500);
+            });
+        }
+
+        // Crear partículas de fondo
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Inicializar cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            animateSkillBars();
+            createParticles();
+        });
+
+        // Cerrar modal con ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.show').forEach(modal => {
+                    modal.classList.remove('show');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
