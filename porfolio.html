@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Portfolio</title>
+    <title>My Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -64,6 +64,57 @@
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            margin: 4rem 0;
+            color: white;
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+        }
+
+        .contact-text {
+            font-weight: 600;
+            font-size: 1.1rem;
         }
 
         /* Sección de aptitudes */
@@ -206,7 +257,7 @@
             backdrop-filter: blur(20px);
             border-radius: 20px;
             padding: 3rem;
-            max-width: 600px;
+            max-width: 800px;
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
@@ -259,14 +310,90 @@
             margin-bottom: 1rem;
         }
 
+        /* Media gallery */
+        .media-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .media-item {
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .media-item:hover {
+            transform: scale(1.05);
+        }
+
+        .media-item img,
+        .media-item video {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* Media viewer */
+        .media-viewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .media-viewer.show {
+            display: flex;
+        }
+
+        .media-viewer img,
+        .media-viewer video {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .media-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .media-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
         /* Animaciones de entrada */
         .fade-in {
             animation: fadeIn 1s ease-in;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Responsive */
@@ -274,13 +401,16 @@
             .name {
                 font-size: 2.5rem;
             }
-            
             .description {
                 font-size: 1.1rem;
             }
-            
             .skills-categories {
                 grid-template-columns: 1fr;
+            }
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
             }
         }
 
@@ -305,8 +435,12 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
         }
     </style>
 </head>
@@ -317,25 +451,23 @@
         <!-- Header -->
         <div class="header fade-in">
             <div class="profile-photo">
-                👨‍💼
             </div>
-            <h1 class="name">Tu Nombre Aquí</h1>
+            <h1 class="name">Rodrigo Álvarez Moizé</h1>
             <p class="description">
-                Desarrollador Full Stack especializado en tecnologías web modernas. 
-                Con experiencia en el desarrollo de aplicaciones escalables y soluciones digitales innovadoras. 
-                Comprometido con las mejores prácticas de desarrollo y la entrega de productos de alta calidad.
+                I am a game design and development student specialized in Unity and C#. I'm passionate about creating interactive and immersive experiences that captivate players. I'm always looking to learn new technologies and improve my skills to take my projects to the next level.
             </p>
         </div>
 
-        <!-- Aptitudes -->
+       
+        <!-- Skills -->
         <div class="skills-section">
-            <h2 class="skills-title fade-in">Mis Aptitudes</h2>
+            <h2 class="skills-title fade-in">My Skills</h2>
             <div class="skills-categories">
                 <div class="skill-category fade-in" onclick="openSkillModal('frontend')">
-                    <h3 class="category-title">💻 Frontend</h3>
+                    <h3 class="category-title">Code</h3>
                     <div class="skill-item">
                         <div class="skill-name">
-                            <span>HTML/CSS</span>
+                            <span>C#</span>
                             <span>90%</span>
                         </div>
                         <div class="skill-bar">
@@ -344,38 +476,7 @@
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">
-                            <span>JavaScript</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="85"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>React</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="80"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-category fade-in" onclick="openSkillModal('backend')">
-                    <h3 class="category-title">⚙️ Backend</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Node.js</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="75"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Python</span>
+                            <span>C++</span>
                             <span>70%</span>
                         </div>
                         <div class="skill-bar">
@@ -384,17 +485,26 @@
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">
-                            <span>Bases de Datos</span>
-                            <span>65%</span>
+                            <span>Python</span>
+                            <span>80%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" data-width="65"></div>
+                            <div class="skill-progress" data-width="80"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Lua</span>
+                            <span>60%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="60"></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="skill-category fade-in" onclick="openSkillModal('tools')">
-                    <h3 class="category-title">🛠️ Herramientas</h3>
+                    <h3 class="category-title">Production</h3>
                     <div class="skill-item">
                         <div class="skill-name">
                             <span>Git</span>
@@ -406,7 +516,7 @@
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">
-                            <span>Docker</span>
+                            <span>Blender</span>
                             <span>60%</span>
                         </div>
                         <div class="skill-bar">
@@ -415,7 +525,7 @@
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">
-                            <span>AWS</span>
+                            <span>Maya</span>
                             <span>55%</span>
                         </div>
                         <div class="skill-bar">
@@ -426,40 +536,60 @@
             </div>
         </div>
 
-        <!-- Proyectos -->
+        <!-- Projects -->
         <div class="projects-section">
-            <h2 class="projects-title fade-in">Mis Proyectos</h2>
+            <h2 class="projects-title fade-in">My Projects</h2>
             <div class="projects-grid">
                 <div class="project-card fade-in" onclick="openProjectModal('proyecto1')">
-                    <h3 class="project-title">🛒 E-Commerce Platform</h3>
+                    <h3 class="project-title">The Asylum of Creation</h3>
                     <p class="project-description">
-                        Plataforma completa de comercio electrónico con React y Node.js
+                        Indie horror game created for CITM GameJam 2024
                     </p>
                 </div>
                 
                 <div class="project-card fade-in" onclick="openProjectModal('proyecto2')">
-                    <h3 class="project-title">📱 App Móvil de Tareas</h3>
+                    <h3 class="project-title">Alien Cocktail</h3>
                     <p class="project-description">
-                        Aplicación de gestión de tareas con sincronización en la nube
+                        VR game developed in Unity
                     </p>
                 </div>
                 
                 <div class="project-card fade-in" onclick="openProjectModal('proyecto3')">
-                    <h3 class="project-title">📊 Dashboard Analytics</h3>
+                    <h3 class="project-title">W40K Warhammer: The Last Marine</h3>
                     <p class="project-description">
-                        Panel de control con visualizaciones de datos en tiempo real
-                    </p
+                        Video game developed in Project III course
+                    </p>
                 </div>
                 
                 <div class="project-card fade-in" onclick="openProjectModal('proyecto4')">
-                    <h3 class="project-title">🔌 API REST</h3>
+                    <h3 class="project-title">🔌 L'enroc</h3>
                     <p class="project-description">
-                        API robusta con autenticación JWT y documentación completa
+                        3D animation participant in CITM Animat contest
                     </p>
                 </div>
             </div>
         </div>
     </div>
+
+     <!-- Contact Section -->
+        <div class="contact-section fade-in">
+            <h2 class="contact-title">Connect with me</h2>
+            <div class="contact-links">
+                <a href="mailto:your.email@gmail.com" class="contact-link" target="_blank">
+                    <span class="contact-icon">📧</span>
+                    <span class="contact-text">Gmail</span>
+                </a>
+                <a href="https://linkedin.com/in/your-profile" class="contact-link" target="_blank">
+                    <span class="contact-icon">💼</span>
+                    <span class="contact-text">LinkedIn</span>
+                </a>
+                <a href="https://github.com/your-username" class="contact-link" target="_blank">
+                    <span class="contact-icon">🐱</span>
+                    <span class="contact-text">GitHub</span>
+                </a>
+            </div>
+        </div>
+
 
     <!-- Modal para aptitudes -->
     <div class="modal" id="skillModal">
@@ -477,145 +607,145 @@
         </div>
     </div>
 
+    <!-- Media Viewer -->
+    <div class="media-viewer" id="mediaViewer">
+        <button class="media-close" onclick="closeMediaViewer()">&times;</button>
+        <div id="mediaViewerContent"></div>
+    </div>
+
     <script>
-        // Datos de aptitudes
+        // Skills data translated to English
         const skillsData = {
             frontend: {
-                title: "Desarrollo Frontend",
-                description: "Especializado en crear interfaces de usuario modernas y responsive",
+                title: "Code",
+                description: "Different programming languages I have specialized in",
                 details: `
-                    <h3>Tecnologías Principales:</h3>
-                    <p>• HTML5 semántico y accesible</p>
-                    <p>• CSS3 avanzado con Flexbox y Grid</p>
-                    <p>• JavaScript ES6+ y programación asíncrona</p>
-                    <p>• React.js con hooks y context API</p>
-                    <p>• Frameworks CSS como Tailwind y Bootstrap</p>
+                    <h3>Programming Languages</h3>
+                    <p>• C# language studied at university and self-taught</p>
+                    <p>• C++ language studied at university and self-taught</p>
+                    <p>• Python language studied at university and self-taught</p>
+                    <p>• Lua used in Project III course</p>
                     
-                    <h3>Experiencia:</h3>
-                    <p>Más de 3 años desarrollando aplicaciones web interactivas y responsive. Experiencia en optimización de rendimiento y mejores prácticas de SEO.</p>
-                `
-            },
-            backend: {
-                title: "Desarrollo Backend",
-                description: "Creación de APIs robustas y arquitecturas escalables",
-                details: `
-                    <h3>Tecnologías Principales:</h3>
-                    <p>• Node.js con Express.js</p>
-                    <p>• Python con Django y Flask</p>
-                    <p>• Bases de datos SQL y NoSQL</p>
-                    <p>• Autenticación JWT y OAuth</p>
-                    <p>• Microservicios y arquitectura REST</p>
-                    
-                    <h3>Experiencia:</h3>
-                    <p>Desarrollo de sistemas backend escalables, manejo de grandes volúmenes de datos y implementación de medidas de seguridad avanzadas.</p>
+                    <h3>Experience:</h3>
+                    <p>Besides being in my final year of university, I have participated in different projects to improve my skills and taking various courses in both Unity and Unreal</p>
                 `
             },
             tools: {
-                title: "Herramientas y DevOps",
-                description: "Dominio de herramientas modernas para desarrollo y despliegue",
+                title: "Production",
+                description: "Mastery of modern tools for development and modeling",
                 details: `
-                    <h3>Herramientas Principales:</h3>
-                    <p>• Git y GitHub para control de versiones</p>
-                    <p>• Docker para containerización</p>
-                    <p>• AWS para cloud computing</p>
-                    <p>• CI/CD con GitHub Actions</p>
-                    <p>• Monitoring con herramientas modernas</p>
+                    <h3>Main Tools:</h3>
+                    <p>• Git and GitHub for version control</p>
+                    <p>• Blender for 3D modeling and animation</p>
+                    <p>• Maya for 3D modeling and animation</p>
                     
-                    <h3>Experiencia:</h3>
-                    <p>Implementación de flujos de trabajo automatizados, despliegue en la nube y mantenimiento de infraestructura escalable.</p>
+                    <h3>Experience:</h3>
+                    <p>Learned at university and used for personal projects</p>
                 `
             }
         };
 
-        // Datos de proyectos
+        // Projects data with media support
         const projectsData = {
             proyecto1: {
-                title: "E-Commerce Platform",
-                description: "Plataforma completa de comercio electrónico",
+                title: "The Asylum of Creation",
+                description: "Complete horror game platform",
+                media: [
+                    // Add your image/video URLs here
+                    // { type: 'image', src: 'path/to/asylum-image1.jpg' },
+                    // { type: 'image', src: 'path/to/asylum-image2.jpg' },
+                    // { type: 'video', src: 'path/to/asylum-trailer.mp4' }
+                ],
                 details: `
-                    <h3>Descripción del Proyecto:</h3>
-                    <p>Desarrollo de una plataforma de comercio electrónico completa con carrito de compras, sistema de pagos integrado y panel de administración.</p>
+                    <h3>Project Description:</h3>
+                    <p>Game developed for the 10th edition of CITM GameJam with the theme "Trial and Error" with sub-themes "The Button" and "Replayability"</p>
                     
-                    <h3>Tecnologías Utilizadas:</h3>
-                    <p>• Frontend: React.js con Redux</p>
-                    <p>• Backend: Node.js con Express</p>
-                    <p>• Base de datos: MongoDB</p>
-                    <p>• Pagos: Stripe API</p>
+                    <h3>Technologies Used:</h3>
+                    <p>• Unity</p>
+                    <p>• Blender</p>
+                    <p>• Substance Painter</p>
                     
-                    <h3>Características Principales:</h3>
-                    <p>• Catálogo de productos con filtros avanzados</p>
-                    <p>• Carrito de compras persistente</p>
-                    <p>• Sistema de usuarios y autenticación</p>
-                    <p>• Panel de administración completo</p>
-                    <p>• Responsive design</p>
+                    <h3>Main Features:</h3>
+                    <p>• Retro artistic theme</p>
+                    <p>• Advanced replayability</p>
+                    <p>• Hidden narrative</p>
+                    <p>• Mild horror</p>
                 `
             },
             proyecto2: {
-                title: "App Móvil de Tareas",
-                description: "Aplicación de gestión de tareas multiplataforma",
+                title: "Alien Cocktail",
+                description: "VR cocktail preparation game",
+                media: [
+                    // Add your image/video URLs here
+                    // { type: 'image', src: 'path/to/cocktail-image1.jpg' },
+                    // { type: 'video', src: 'path/to/cocktail-gameplay.mp4' }
+                ],
                 details: `
-                    <h3>Descripción del Proyecto:</h3>
-                    <p>Aplicación móvil para gestión de tareas personales con sincronización en tiempo real y colaboración en equipo.</p>
+                    <h3>Project Description:</h3>
+                    <p>VR video game developed in Unity for a course that consists of creating different cocktails within a certain time to receive a certain score.</p>
                     
-                    <h3>Tecnologías Utilizadas:</h3>
-                    <p>• React Native para desarrollo multiplataforma</p>
-                    <p>• Firebase para backend y sincronización</p>
-                    <p>• Redux para gestión de estado</p>
-                    <p>• Push notifications</p>
+                    <h3>Technologies Used:</h3>
+                    <p>• Unity</p>
+                    <p>• Blender</p>
+                    <p>• Substance Painter</p>
+                    <p>• Visual Studio Code</p>
                     
-                    <h3>Características Principales:</h3>
-                    <p>• Creación y organización de tareas</p>
-                    <p>• Recordatorios y notificaciones</p>
-                    <p>• Colaboración en tiempo real</p>
-                    <p>• Modo offline</p>
-                    <p>• Estadísticas de productividad</p>
+                    <h3>Main Features:</h3>
+                    <p>• VR video game</p>
+                    <p>• Creation and distribution of cocktails</p>
+                    <p>• Comic and modern art</p>
+                    <p>• Offline mode</p>
                 `
             },
             proyecto3: {
-                title: "Dashboard Analytics",
-                description: "Panel de control con visualizaciones de datos",
+                title: "Warhammer 40K: The Last Marine",
+                description: "Video game created in a proprietary engine called Coffee Engine developed for Project III course with Warhammer 40K theme, from there a team of 40 people divided by different departments carried out this project.",
+                media: [
+                    // Add your image/video URLs here
+                    // { type: 'image', src: 'path/to/warhammer-image1.jpg' },
+                    // { type: 'image', src: 'path/to/warhammer-image2.jpg' }
+                ],
                 details: `
-                    <h3>Descripción del Proyecto:</h3>
-                    <p>Dashboard interactivo para análisis de datos empresariales con gráficos dinámicos y reportes automatizados.</p>
+                    <h3>Project Description:</h3>
+                    <p>Third-person game where you'll live the experience of the last marine, where you'll have to face different enemies to reach the end of the adventure.</p>
                     
-                    <h3>Tecnologías Utilizadas:</h3>
-                    <p>• React.js con TypeScript</p>
-                    <p>• D3.js para visualizaciones</p>
-                    <p>• Node.js para API</p>
-                    <p>• PostgreSQL para datos</p>
+                    <h3>Technologies Used:</h3>
+                    <p>• Coffee Engine</p>
+                    <p>• Substance Painter</p>
+                    <p>• Blender</p>
+                    <p>• Visual Studio Code</p>
                     
-                    <h3>Características Principales:</h3>
-                    <p>• Gráficos interactivos en tiempo real</p>
-                    <p>• Filtros y segmentación de datos</p>
-                    <p>• Exportación de reportes</p>
-                    <p>• Alertas automáticas</p>
-                    <p>• Diseño responsive</p>
+                    <h3>Main Features:</h3>
+                    <p>• Third-person game</p>
+                    <p>• Developed in proprietary engine</p>
+                    <p>• Action video game</p>
+                    <p>• Developed in Lua</p>
                 `
             },
             proyecto4: {
-                title: "API REST",
-                description: "API robusta con documentación completa",
+                title: "L'enroc",
+                description: "3D animation participant in CITM Animat contest with the theme of The Tower and the King",
+                media: [
+                    // Add your image/video URLs here
+                    // { type: 'video', src: 'path/to/lenroc-animation.mp4' },
+                    // { type: 'image', src: 'path/to/lenroc-still1.jpg' }
+                ],
                 details: `
-                    <h3>Descripción del Proyecto:</h3>
-                    <p>Desarrollo de API REST escalable para aplicaciones empresariales con documentación completa y pruebas automatizadas.</p>
+                    <h3>Project Description:</h3>
+                    <p>3D animation created for the CITM Animat contest exploring the theme of chess pieces with "The Tower and the King" concept.</p>
                     
-                    <h3>Tecnologías Utilizadas:</h3>
-                    <p>• Node.js con Express.js</p>
-                    <p>• JWT para autenticación</p>
-                    <p>• Swagger para documentación</p>
-                    <p>• Jest para testing</p>
+                    <h3>Technologies Used:</h3>
+                    <p>• Blender</p>
                     
-                    <h3>Características Principales:</h3>
-                    <p>• Endpoints RESTful bien estructurados</p>
-                    <p>• Autenticación y autorización segura</p>
-                    <p>• Documentación interactiva</p>
-                    <p>• Testing automatizado</p>
-                    <p>• Rate limiting y validación</p>
+                    <h3>Main Features:</h3>
+                    <p>• 3D animation</p>
+                    <p>• Modeling and rigging</p>
+                    <p>• Contest participation</p>
                 `
             }
         };
 
-        // Funciones para modales
+        // Functions for modals
         function openSkillModal(skillType) {
             const skill = skillsData[skillType];
             document.getElementById('skillModalContent').innerHTML = `
@@ -628,26 +758,73 @@
 
         function openProjectModal(projectType) {
             const project = projectsData[projectType];
+            let mediaHTML = '';
+            
+            if (project.media && project.media.length > 0) {
+                mediaHTML = '<div class="media-gallery">';
+                project.media.forEach((item, index) => {
+                    if (item.type === 'image') {
+                        mediaHTML += `
+                            <div class="media-item" onclick="openMediaViewer('${item.src}', 'image')">
+                                <img src="${item.src}" alt="${project.title} image ${index + 1}">
+                            </div>
+                        `;
+                    } else if (item.type === 'video') {
+                        mediaHTML += `
+                            <div class="media-item" onclick="openMediaViewer('${item.src}', 'video')">
+                                <video src="${item.src}" muted>
+                                    <source src="${item.src}" type="video/mp4">
+                                </video>
+                            </div>
+                        `;
+                    }
+                });
+                mediaHTML += '</div>';
+            }
+            
             document.getElementById('projectModalContent').innerHTML = `
                 <h2>${project.title}</h2>
                 <p><strong>${project.description}</strong></p>
+                ${mediaHTML}
                 ${project.details}
             `;
             document.getElementById('projectModal').classList.add('show');
+        }
+
+        function openMediaViewer(src, type) {
+            const viewer = document.getElementById('mediaViewer');
+            const content = document.getElementById('mediaViewerContent');
+            
+            if (type === 'image') {
+                content.innerHTML = `<img src="${src}" alt="Full size image">`;
+            } else if (type === 'video') {
+                content.innerHTML = `<video src="${src}" controls autoplay>
+                    <source src="${src}" type="video/mp4">
+                </video>`;
+            }
+            
+            viewer.classList.add('show');
+        }
+
+        function closeMediaViewer() {
+            document.getElementById('mediaViewer').classList.remove('show');
         }
 
         function closeModal(modalId) {
             document.getElementById(modalId).classList.remove('show');
         }
 
-        // Cerrar modal al hacer click fuera
+        // Close modal when clicking outside
         window.addEventListener('click', function(e) {
             if (e.target.classList.contains('modal')) {
                 e.target.classList.remove('show');
             }
+            if (e.target.classList.contains('media-viewer')) {
+                e.target.classList.remove('show');
+            }
         });
 
-        // Animación de barras de progreso
+        // Animate skill bars
         function animateSkillBars() {
             const progressBars = document.querySelectorAll('.skill-progress');
             progressBars.forEach(bar => {
@@ -658,7 +835,7 @@
             });
         }
 
-        // Crear partículas de fondo
+        // Create background particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 50;
@@ -673,17 +850,20 @@
             }
         }
 
-        // Inicializar cuando se carga la página
+        // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
             animateSkillBars();
             createParticles();
         });
 
-        // Cerrar modal con ESC
+        // Close modal with ESC
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 document.querySelectorAll('.modal.show').forEach(modal => {
                     modal.classList.remove('show');
+                });
+                document.querySelectorAll('.media-viewer.show').forEach(viewer => {
+                    viewer.classList.remove('show');
                 });
             }
         });
