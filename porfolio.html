@@ -209,17 +209,28 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 2rem;
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
-            text-align: center;
             color: white;
+            overflow: hidden;
         }
 
         .project-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .project-content {
+            padding: 2rem;
+            text-align: center;
         }
 
         .project-title {
@@ -257,9 +268,9 @@
             backdrop-filter: blur(20px);
             border-radius: 20px;
             padding: 3rem;
-            max-width: 800px;
+            max-width: 900px;
             width: 90%;
-            max-height: 80vh;
+            max-height: 90vh;
             overflow-y: auto;
             position: relative;
             animation: modalSlideIn 0.3s ease;
@@ -310,74 +321,100 @@
             margin-bottom: 1rem;
         }
 
-        /* Media gallery */
-        .media-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
+        /* Image Gallery */
+        .image-gallery {
             margin: 2rem 0;
         }
 
-        .media-item {
-            border-radius: 10px;
+        .gallery-title {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .gallery-main {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            background: #f0f0f0;
+            border-radius: 15px;
             overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s ease;
         }
 
-        .media-item:hover {
-            transform: scale(1.05);
-        }
-
-        .media-item img,
-        .media-item video {
+        .gallery-main-image {
             width: 100%;
-            height: 200px;
+            height: 400px;
             object-fit: cover;
+            display: block;
         }
 
-        /* Media viewer */
-        .media-viewer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1001;
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .media-viewer.show {
-            display: flex;
-        }
-
-        .media-viewer img,
-        .media-viewer video {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            border-radius: 10px;
-        }
-
-        .media-close {
+        .gallery-nav {
             position: absolute;
-            top: 2rem;
-            right: 2rem;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
             color: white;
-            font-size: 2rem;
-            padding: 0.5rem;
-            border-radius: 50%;
+            border: none;
+            padding: 1rem;
             cursor: pointer;
+            font-size: 1.5rem;
+            border-radius: 50%;
             transition: background 0.3s ease;
         }
 
-        .media-close:hover {
-            background: rgba(255, 255, 255, 0.3);
+        .gallery-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .gallery-prev {
+            left: 1rem;
+        }
+
+        .gallery-next {
+            right: 1rem;
+        }
+
+        .gallery-counter {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .gallery-thumbnails {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            justify-content: center;
+        }
+
+        .gallery-thumbnail {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .gallery-thumbnail.active {
+            opacity: 1;
+            transform: scale(1.1);
+            border: 2px solid #3498db;
+        }
+
+        .gallery-thumbnail:hover {
+            opacity: 1;
         }
 
         /* Animaciones de entrada */
@@ -401,16 +438,28 @@
             .name {
                 font-size: 2.5rem;
             }
+
             .description {
                 font-size: 1.1rem;
             }
+
             .skills-categories {
                 grid-template-columns: 1fr;
             }
+
             .contact-links {
                 flex-direction: column;
                 align-items: center;
                 gap: 1rem;
+            }
+
+            .gallery-main-image {
+                height: 250px;
+            }
+
+            .gallery-nav {
+                padding: 0.5rem;
+                font-size: 1.2rem;
             }
         }
 
@@ -446,11 +495,11 @@
 </head>
 <body>
     <div class="particles" id="particles"></div>
-    
     <div class="container">
         <!-- Header -->
         <div class="header fade-in">
             <div class="profile-photo">
+                <img src="images/fotoperfil.png" alt="Foto de perfil" style="width:100%; height:100%; border-radius:50%;">
             </div>
             <h1 class="name">Rodrigo Álvarez Moizé</h1>
             <p class="description">
@@ -458,7 +507,6 @@
             </p>
         </div>
 
-       
         <!-- Skills -->
         <div class="skills-section">
             <h2 class="skills-title fade-in">My Skills</h2>
@@ -502,7 +550,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="skill-category fade-in" onclick="openSkillModal('tools')">
                     <h3 class="category-title">Production</h3>
                     <div class="skill-item">
@@ -541,55 +588,63 @@
             <h2 class="projects-title fade-in">My Projects</h2>
             <div class="projects-grid">
                 <div class="project-card fade-in" onclick="openProjectModal('proyecto1')">
-                    <h3 class="project-title">The Asylum of Creation</h3>
-                    <p class="project-description">
-                        Indie horror game created for CITM GameJam 2024
-                    </p>
+                    <img src="images/AssylumOfCreation.png" alt="The Asylum of Creation" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">The Asylum of Creation</h3>
+                        <p class="project-description">
+                            Indie horror game created for CITM GameJam 2024
+                        </p>
+                    </div>
                 </div>
-                
                 <div class="project-card fade-in" onclick="openProjectModal('proyecto2')">
-                    <h3 class="project-title">Alien Cocktail</h3>
-                    <p class="project-description">
-                        VR game developed in Unity
-                    </p>
+                    <img src="images/AlienCocktail.png" alt="Alien Cocktail" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Alien Cocktail</h3>
+                        <p class="project-description">
+                            VR game developed in Unity
+                        </p>
+                    </div>
                 </div>
-                
                 <div class="project-card fade-in" onclick="openProjectModal('proyecto3')">
-                    <h3 class="project-title">W40K Warhammer: The Last Marine</h3>
-                    <p class="project-description">
-                        Video game developed in Project III course
-                    </p>
+                    <img src="images/w40k.png" alt="W40K Warhammer: The Last Marine" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">W40K Warhammer: The Last Marine</h3>
+                        <p class="project-description">
+                            Video game developed in Project III course
+                        </p>
+                    </div>
                 </div>
-                
                 <div class="project-card fade-in" onclick="openProjectModal('proyecto4')">
-                    <h3 class="project-title">🔌 L'enroc</h3>
-                    <p class="project-description">
-                        3D animation participant in CITM Animat contest
-                    </p>
+                    <img src="images/arte/animat3.png" alt="L'enroc" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">L'enroc</h3>
+                        <p class="project-description">
+                            3D animation participant in CITM Animat contest
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-     <!-- Contact Section -->
-        <div class="contact-section fade-in">
-            <h2 class="contact-title">Connect with me</h2>
-            <div class="contact-links">
-                <a href="mailto:your.email@gmail.com" class="contact-link" target="_blank">
-                    <span class="contact-icon">📧</span>
-                    <span class="contact-text">Gmail</span>
-                </a>
-                <a href="https://linkedin.com/in/your-profile" class="contact-link" target="_blank">
-                    <span class="contact-icon">💼</span>
-                    <span class="contact-text">LinkedIn</span>
-                </a>
-                <a href="https://github.com/your-username" class="contact-link" target="_blank">
-                    <span class="contact-icon">🐱</span>
-                    <span class="contact-text">GitHub</span>
-                </a>
-            </div>
+    <!-- Contact Section -->
+    <div class="contact-section fade-in">
+        <h2 class="contact-title">Connect with me</h2>
+        <div class="contact-links">
+            <a href="mailto:your.email@gmail.com" class="contact-link" target="_blank">
+                <span class="contact-icon">📧</span>
+                <span class="contact-text">Gmail</span>
+            </a>
+            <a href="https://linkedin.com/in/your-profile" class="contact-link" target="_blank">
+                <span class="contact-icon">💼</span>
+                <span class="contact-text">LinkedIn</span>
+            </a>
+            <a href="https://github.com/your-username" class="contact-link" target="_blank">
+                <span class="contact-icon">🐱</span>
+                <span class="contact-text">GitHub</span>
+            </a>
         </div>
-
+    </div>
 
     <!-- Modal para aptitudes -->
     <div class="modal" id="skillModal">
@@ -607,141 +662,120 @@
         </div>
     </div>
 
-    <!-- Media Viewer -->
-    <div class="media-viewer" id="mediaViewer">
-        <button class="media-close" onclick="closeMediaViewer()">&times;</button>
-        <div id="mediaViewerContent"></div>
-    </div>
-
     <script>
+        // Current gallery state
+        let currentGallery = [];
+        let currentImageIndex = 0;
+
         // Skills data translated to English
         const skillsData = {
             frontend: {
                 title: "Code",
                 description: "Different programming languages I have specialized in",
-                details: `
-                    <h3>Programming Languages</h3>
-                    <p>• C# language studied at university and self-taught</p>
-                    <p>• C++ language studied at university and self-taught</p>
-                    <p>• Python language studied at university and self-taught</p>
-                    <p>• Lua used in Project III course</p>
-                    
-                    <h3>Experience:</h3>
-                    <p>Besides being in my final year of university, I have participated in different projects to improve my skills and taking various courses in both Unity and Unreal</p>
-                `
+                details: `<h3>Programming Languages</h3>
+                <p>• C# language studied at university and self-taught</p>
+                <p>• C++ language studied at university and self-taught</p>
+                <p>• Python language studied at university and self-taught</p>
+                <p>• Lua used in Project III course</p>
+                <h3>Experience:</h3>
+                <p>Besides being in my final year of university, I have participated in different projects to improve my skills and taking various courses in both Unity and Unreal</p>`
             },
             tools: {
                 title: "Production",
                 description: "Mastery of modern tools for development and modeling",
-                details: `
-                    <h3>Main Tools:</h3>
-                    <p>• Git and GitHub for version control</p>
-                    <p>• Blender for 3D modeling and animation</p>
-                    <p>• Maya for 3D modeling and animation</p>
-                    
-                    <h3>Experience:</h3>
-                    <p>Learned at university and used for personal projects</p>
-                `
+                details: `<h3>Main Tools:</h3>
+                <p>• Git and GitHub for version control</p>
+                <p>• Blender for 3D modeling and animation</p>
+                <p>• Maya for 3D modeling and animation</p>
+                <h3>Experience:</h3>
+                <p>Learned at university and used for personal projects</p>`
             }
         };
 
-        // Projects data with media support
+        // Projects data with multi7ple images
         const projectsData = {
             proyecto1: {
                 title: "The Asylum of Creation",
                 description: "Complete horror game platform",
-                media: [
-                    // Add your image/video URLs here
-                    // { type: 'image', src: 'path/to/asylum-image1.jpg' },
-                    // { type: 'image', src: 'path/to/asylum-image2.jpg' },
-                    // { type: 'video', src: 'path/to/asylum-trailer.mp4' }
+                coverImage: "images/AssylumOfCreation.png",
+                images: [
+                    "images/GameJam/ENTRADA.png",
+                    "images/GameJam/image.png",
+                    "images/GameJam/LEVEL3.png"
                 ],
-                details: `
-                    <h3>Project Description:</h3>
-                    <p>Game developed for the 10th edition of CITM GameJam with the theme "Trial and Error" with sub-themes "The Button" and "Replayability"</p>
-                    
-                    <h3>Technologies Used:</h3>
-                    <p>• Unity</p>
-                    <p>• Blender</p>
-                    <p>• Substance Painter</p>
-                    
-                    <h3>Main Features:</h3>
-                    <p>• Retro artistic theme</p>
-                    <p>• Advanced replayability</p>
-                    <p>• Hidden narrative</p>
-                    <p>• Mild horror</p>
-                `
+                details: `<h3>Project Description:</h3>
+                <p>Game developed for the 10th edition of CITM GameJam with the theme "Trial and Error" with sub-themes "The Button" and "Replayability"</p>
+                <h3>Technologies Used:</h3>
+                <p>• Unity</p>
+                <p>• Blender</p>
+                <p>• Substance Painter</p>
+                <h3>Main Features:</h3>
+                <p>• Retro artistic theme</p>
+                <p>• Advanced replayability</p>
+                <p>• Hidden narrative</p>
+                <p>• Mild horror</p>`
             },
             proyecto2: {
                 title: "Alien Cocktail",
                 description: "VR cocktail preparation game",
-                media: [
-                    // Add your image/video URLs here
-                    // { type: 'image', src: 'path/to/cocktail-image1.jpg' },
-                    // { type: 'video', src: 'path/to/cocktail-gameplay.mp4' }
+                coverImage: "https://via.placeholder.com/300x200/FF6B6B/ffffff?text=VR+Game",
+                images: [
+                    "images/AlienCocktail/AlienCocktail.png",
+
                 ],
-                details: `
-                    <h3>Project Description:</h3>
-                    <p>VR video game developed in Unity for a course that consists of creating different cocktails within a certain time to receive a certain score.</p>
-                    
-                    <h3>Technologies Used:</h3>
-                    <p>• Unity</p>
-                    <p>• Blender</p>
-                    <p>• Substance Painter</p>
-                    <p>• Visual Studio Code</p>
-                    
-                    <h3>Main Features:</h3>
-                    <p>• VR video game</p>
-                    <p>• Creation and distribution of cocktails</p>
-                    <p>• Comic and modern art</p>
-                    <p>• Offline mode</p>
-                `
+                details: `<h3>Project Description:</h3>
+                <p>VR video game developed in Unity for a course that consists of creating different cocktails within a certain time to receive a certain score.</p>
+                <h3>Technologies Used:</h3>
+                <p>• Unity</p>
+                <p>• Blender</p>
+                <p>• Substance Painter</p>
+                <p>• Visual Studio Code</p>
+                <h3>Main Features:</h3>
+                <p>• VR video game</p>
+                <p>• Creation and distribution of cocktails</p>
+                <p>• Comic and modern art</p>
+                <p>• Offline mode</p>`
             },
             proyecto3: {
                 title: "Warhammer 40K: The Last Marine",
                 description: "Video game created in a proprietary engine called Coffee Engine developed for Project III course with Warhammer 40K theme, from there a team of 40 people divided by different departments carried out this project.",
-                media: [
-                    // Add your image/video URLs here
-                    // { type: 'image', src: 'path/to/warhammer-image1.jpg' },
-                    // { type: 'image', src: 'path/to/warhammer-image2.jpg' }
+                coverImage: "https://via.placeholder.com/300x200/2C3E50/ffffff?text=Warhammer+40K",
+                images: [
+                    "https://via.placeholder.com/600x400/2C3E50/ffffff?text=Warhammer+Battle+1",
+                    "https://via.placeholder.com/600x400/34495E/ffffff?text=Warhammer+Battle+2",
+                    "https://via.placeholder.com/600x400/1B2631/ffffff?text=Warhammer+Battle+3",
+                    "https://via.placeholder.com/600x400/17202A/ffffff?text=Warhammer+Battle+4",
+                    "https://via.placeholder.com/600x400/212F3C/ffffff?text=Warhammer+Battle+5"
                 ],
-                details: `
-                    <h3>Project Description:</h3>
-                    <p>Third-person game where you'll live the experience of the last marine, where you'll have to face different enemies to reach the end of the adventure.</p>
-                    
-                    <h3>Technologies Used:</h3>
-                    <p>• Coffee Engine</p>
-                    <p>• Substance Painter</p>
-                    <p>• Blender</p>
-                    <p>• Visual Studio Code</p>
-                    
-                    <h3>Main Features:</h3>
-                    <p>• Third-person game</p>
-                    <p>• Developed in proprietary engine</p>
-                    <p>• Action video game</p>
-                    <p>• Developed in Lua</p>
-                `
+                details: `<h3>Project Description:</h3>
+                <p>Third-person game where you'll live the experience of the last marine, where you'll have to face different enemies to reach the end of the adventure.</p>
+                <h3>Technologies Used:</h3>
+                <p>• Coffee Engine</p>
+                <p>• Substance Painter</p>
+                <p>• Blender</p>
+                <p>• Visual Studio Code</p>
+                <h3>Main Features:</h3>
+                <p>• Third-person game</p>
+                <p>• Developed in proprietary engine</p>
+                <p>• Action video game</p>
+                <p>• Developed in Lua</p>`
             },
             proyecto4: {
                 title: "L'enroc",
                 description: "3D animation participant in CITM Animat contest with the theme of The Tower and the King",
-                media: [
-                    // Add your image/video URLs here
-                    // { type: 'video', src: 'path/to/lenroc-animation.mp4' },
-                    // { type: 'image', src: 'path/to/lenroc-still1.jpg' }
+                coverImage: "https://via.placeholder.com/300x200/9B59B6/ffffff?text=3D+Animation",
+                images: [
+                    "https://via.placeholder.com/600x400/9B59B6/ffffff?text=Chess+Animation+1",
+                    "https://via.placeholder.com/600x400/BB6BD9/ffffff?text=Chess+Animation+2"
                 ],
-                details: `
-                    <h3>Project Description:</h3>
-                    <p>3D animation created for the CITM Animat contest exploring the theme of chess pieces with "The Tower and the King" concept.</p>
-                    
-                    <h3>Technologies Used:</h3>
-                    <p>• Blender</p>
-                    
-                    <h3>Main Features:</h3>
-                    <p>• 3D animation</p>
-                    <p>• Modeling and rigging</p>
-                    <p>• Contest participation</p>
-                `
+                details: `<h3>Project Description:</h3>
+                <p>3D animation created for the CITM Animat contest exploring the theme of chess pieces with "The Tower and the King" concept.</p>
+                <h3>Technologies Used:</h3>
+                <p>• Blender</p>
+                <h3>Main Features:</h3>
+                <p>• 3D animation</p>
+                <p>• Modeling and rigging</p>
+                <p>• Contest participation</p>`
             }
         };
 
@@ -758,56 +792,88 @@
 
         function openProjectModal(projectType) {
             const project = projectsData[projectType];
-            let mediaHTML = '';
+            currentGallery = project.images;
+            currentImageIndex = 0;
             
-            if (project.media && project.media.length > 0) {
-                mediaHTML = '<div class="media-gallery">';
-                project.media.forEach((item, index) => {
-                    if (item.type === 'image') {
-                        mediaHTML += `
-                            <div class="media-item" onclick="openMediaViewer('${item.src}', 'image')">
-                                <img src="${item.src}" alt="${project.title} image ${index + 1}">
-                            </div>
-                        `;
-                    } else if (item.type === 'video') {
-                        mediaHTML += `
-                            <div class="media-item" onclick="openMediaViewer('${item.src}', 'video')">
-                                <video src="${item.src}" muted>
-                                    <source src="${item.src}" type="video/mp4">
-                                </video>
-                            </div>
-                        `;
-                    }
-                });
-                mediaHTML += '</div>';
-            }
+            const galleryHTML = createImageGallery(project.images);
             
             document.getElementById('projectModalContent').innerHTML = `
                 <h2>${project.title}</h2>
                 <p><strong>${project.description}</strong></p>
-                ${mediaHTML}
+                ${galleryHTML}
                 ${project.details}
             `;
             document.getElementById('projectModal').classList.add('show');
         }
 
-        function openMediaViewer(src, type) {
-            const viewer = document.getElementById('mediaViewer');
-            const content = document.getElementById('mediaViewerContent');
-            
-            if (type === 'image') {
-                content.innerHTML = `<img src="${src}" alt="Full size image">`;
-            } else if (type === 'video') {
-                content.innerHTML = `<video src="${src}" controls autoplay>
-                    <source src="${src}" type="video/mp4">
-                </video>`;
+        function createImageGallery(images) {
+            if (!images || images.length === 0) {
+                return '';
             }
-            
-            viewer.classList.add('show');
+
+            let thumbnailsHTML = '';
+            images.forEach((image, index) => {
+                thumbnailsHTML += `
+                    <img src="${image}" alt="Thumbnail ${index + 1}" 
+                         class="gallery-thumbnail ${index === 0 ? 'active' : ''}" 
+                         onclick="changeGalleryImage(${index})">
+                `;
+            });
+
+            return `
+                <div class="image-gallery">
+                    <h3 class="gallery-title">Project Gallery</h3>
+                    <div class="gallery-main">
+                        <img src="${images[0]}" alt="Project image" class="gallery-main-image" id="galleryMainImage">
+                        ${images.length > 1 ? `
+                            <button class="gallery-nav gallery-prev" onclick="previousImage()">&#8249;</button>
+                            <button class="gallery-nav gallery-next" onclick="nextImage()">&#8250;</button>
+                            <div class="gallery-counter">
+                                <span id="galleryCounter">1 / ${images.length}</span>
+                            </div>
+                        ` : ''}
+                    </div>
+                    ${images.length > 1 ? `
+                        <div class="gallery-thumbnails">
+                            ${thumbnailsHTML}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
         }
 
-        function closeMediaViewer() {
-            document.getElementById('mediaViewer').classList.remove('show');
+        function changeGalleryImage(index) {
+            currentImageIndex = index;
+            updateGalleryDisplay();
+        }
+
+        function previousImage() {
+            currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : currentGallery.length - 1;
+            updateGalleryDisplay();
+        }
+
+        function nextImage() {
+            currentImageIndex = currentImageIndex < currentGallery.length - 1 ? currentImageIndex + 1 : 0;
+            updateGalleryDisplay();
+        }
+
+        function updateGalleryDisplay() {
+            const mainImage = document.getElementById('galleryMainImage');
+            const counter = document.getElementById('galleryCounter');
+            const thumbnails = document.querySelectorAll('.gallery-thumbnail');
+
+            if (mainImage && currentGallery[currentImageIndex]) {
+                mainImage.src = currentGallery[currentImageIndex];
+            }
+
+            if (counter) {
+                counter.textContent = `${currentImageIndex + 1} / ${currentGallery.length}`;
+            }
+
+            // Update thumbnail active state
+            thumbnails.forEach((thumb, index) => {
+                thumb.classList.toggle('active', index === currentImageIndex);
+            });
         }
 
         function closeModal(modalId) {
@@ -817,9 +883,6 @@
         // Close modal when clicking outside
         window.addEventListener('click', function(e) {
             if (e.target.classList.contains('modal')) {
-                e.target.classList.remove('show');
-            }
-            if (e.target.classList.contains('media-viewer')) {
                 e.target.classList.remove('show');
             }
         });
@@ -856,15 +919,21 @@
             createParticles();
         });
 
-        // Close modal with ESC
+        // Close modal with ESC and navigate gallery with arrow keys
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 document.querySelectorAll('.modal.show').forEach(modal => {
                     modal.classList.remove('show');
                 });
-                document.querySelectorAll('.media-viewer.show').forEach(viewer => {
-                    viewer.classList.remove('show');
-                });
+            }
+            
+            // Navigate gallery with arrow keys when modal is open
+            if (document.getElementById('projectModal').classList.contains('show')) {
+                if (e.key === 'ArrowLeft') {
+                    previousImage();
+                } else if (e.key === 'ArrowRight') {
+                    nextImage();
+                }
             }
         });
     </script>
