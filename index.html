@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -417,6 +418,42 @@
             opacity: 1;
         }
 
+        .video-thumbnail {
+            position: relative;
+        }
+
+        .video-thumbnail::after {
+            content: '▶';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 3px;
+        }
+
+        .gallery-video-container {
+            width: 100%;
+            height: 400px;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .gallery-video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         /* Animaciones de entrada */
         .fade-in {
             animation: fadeIn 1s ease-in;
@@ -454,6 +491,10 @@
             }
 
             .gallery-main-image {
+                height: 250px;
+            }
+
+            .gallery-video-container {
                 height: 250px;
             }
 
@@ -692,16 +733,17 @@
             }
         };
 
-        // Projects data with multi7ple images
+        // Projects data with multiple images and videos
         const projectsData = {
             proyecto1: {
                 title: "The Asylum of Creation",
                 description: "Complete horror game platform",
                 coverImage: "images/AssylumOfCreation.png",
-                images: [
-                    "images/GameJam/ENTRADA.png",
-                    "images/GameJam/image.png",
-                    "images/GameJam/LEVEL3.png"
+                media: [
+                    { type: 'image', src: "images/GameJam/ENTRADA.png" },
+                    { type: 'image', src: "images/GameJam/image.png" },
+                    { type: 'image', src: "images/GameJam/LEVEL3.png" },
+                    { type: 'video', src: "CIh03oIrMgc" }
                 ],
                 details: `<h3>Project Description:</h3>
                 <p>Game developed for the 10th edition of CITM GameJam with the theme "Trial and Error" with sub-themes "The Button" and "Replayability"</p>
@@ -719,9 +761,9 @@
                 title: "Alien Cocktail",
                 description: "VR cocktail preparation game",
                 coverImage: "https://via.placeholder.com/300x200/FF6B6B/ffffff?text=VR+Game",
-                images: [
-                    "images/AlienCocktail/AlienCocktail.png",
-
+                media: [
+                    { type: 'image', src: "images/AlienCocktail/AlienCocktail.png" },
+                    //{ type: 'video', src: "dQw4w9WgXcQ" }
                 ],
                 details: `<h3>Project Description:</h3>
                 <p>VR video game developed in Unity for a course that consists of creating different cocktails within a certain time to receive a certain score.</p>
@@ -740,12 +782,8 @@
                 title: "Warhammer 40K: The Last Marine",
                 description: "Video game created in a proprietary engine called Coffee Engine developed for Project III course with Warhammer 40K theme, from there a team of 40 people divided by different departments carried out this project.",
                 coverImage: "https://via.placeholder.com/300x200/2C3E50/ffffff?text=Warhammer+40K",
-                images: [
-                    "https://via.placeholder.com/600x400/2C3E50/ffffff?text=Warhammer+Battle+1",
-                    "https://via.placeholder.com/600x400/34495E/ffffff?text=Warhammer+Battle+2",
-                    "https://via.placeholder.com/600x400/1B2631/ffffff?text=Warhammer+Battle+3",
-                    "https://via.placeholder.com/600x400/17202A/ffffff?text=Warhammer+Battle+4",
-                    "https://via.placeholder.com/600x400/212F3C/ffffff?text=Warhammer+Battle+5"
+                media: [                    
+                    { type: 'video', src: "pNp_OPTwnTo" }
                 ],
                 details: `<h3>Project Description:</h3>
                 <p>Third-person game where you'll live the experience of the last marine, where you'll have to face different enemies to reach the end of the adventure.</p>
@@ -764,9 +802,10 @@
                 title: "L'enroc",
                 description: "3D animation participant in CITM Animat contest with the theme of The Tower and the King",
                 coverImage: "https://via.placeholder.com/300x200/9B59B6/ffffff?text=3D+Animation",
-                images: [
-                    "https://via.placeholder.com/600x400/9B59B6/ffffff?text=Chess+Animation+1",
-                    "https://via.placeholder.com/600x400/BB6BD9/ffffff?text=Chess+Animation+2"
+                media: [
+                    { type: 'video', src: "2NTf79kP-KY" },
+                    // { type: 'image', src: "https://via.placeholder.com/600x400/9B59B6/ffffff?text=Chess+Animation+1" },
+                    // { type: 'image', src: "https://via.placeholder.com/600x400/BB6BD9/ffffff?text=Chess+Animation+2" }
                 ],
                 details: `<h3>Project Description:</h3>
                 <p>3D animation created for the CITM Animat contest exploring the theme of chess pieces with "The Tower and the King" concept.</p>
@@ -792,10 +831,10 @@
 
         function openProjectModal(projectType) {
             const project = projectsData[projectType];
-            currentGallery = project.images;
+            currentGallery = project.media;
             currentImageIndex = 0;
             
-            const galleryHTML = createImageGallery(project.images);
+            const galleryHTML = createMediaGallery(project.media);
             
             document.getElementById('projectModalContent').innerHTML = `
                 <h2>${project.title}</h2>
@@ -806,34 +845,57 @@
             document.getElementById('projectModal').classList.add('show');
         }
 
-        function createImageGallery(images) {
-            if (!images || images.length === 0) {
+        function createMediaGallery(mediaArray) {
+            if (!mediaArray || mediaArray.length === 0) {
                 return '';
             }
 
             let thumbnailsHTML = '';
-            images.forEach((image, index) => {
+            mediaArray.forEach((media, index) => {
+                const thumbnailSrc = media.type === 'video' 
+                    ? `https://img.youtube.com/vi/${media.src}/hqdefault.jpg`
+                    : media.src;
+                
+                const videoClass = media.type === 'video' ? 'video-thumbnail' : '';
+                
                 thumbnailsHTML += `
-                    <img src="${image}" alt="Thumbnail ${index + 1}" 
-                         class="gallery-thumbnail ${index === 0 ? 'active' : ''}" 
+                    <img src="${thumbnailSrc}" alt="Thumbnail ${index + 1}" 
+                         class="gallery-thumbnail ${videoClass} ${index === 0 ? 'active' : ''}" 
                          onclick="changeGalleryImage(${index})">
                 `;
             });
+
+            const firstMedia = mediaArray[0];
+            let mainMediaHTML = '';
+            
+            if (firstMedia.type === 'video') {
+                mainMediaHTML = `
+                    <div class="gallery-video-container" id="galleryMainMedia">
+                        <iframe src="https://www.youtube.com/embed/${firstMedia.src}" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                `;
+            } else {
+                mainMediaHTML = `
+                    <img src="${firstMedia.src}" alt="Project media" class="gallery-main-image" id="galleryMainMedia">
+                `;
+            }
 
             return `
                 <div class="image-gallery">
                     <h3 class="gallery-title">Project Gallery</h3>
                     <div class="gallery-main">
-                        <img src="${images[0]}" alt="Project image" class="gallery-main-image" id="galleryMainImage">
-                        ${images.length > 1 ? `
+                        ${mainMediaHTML}
+                        ${mediaArray.length > 1 ? `
                             <button class="gallery-nav gallery-prev" onclick="previousImage()">&#8249;</button>
                             <button class="gallery-nav gallery-next" onclick="nextImage()">&#8250;</button>
                             <div class="gallery-counter">
-                                <span id="galleryCounter">1 / ${images.length}</span>
+                                <span id="galleryCounter">1 / ${mediaArray.length}</span>
                             </div>
                         ` : ''}
                     </div>
-                    ${images.length > 1 ? `
+                    ${mediaArray.length > 1 ? `
                         <div class="gallery-thumbnails">
                             ${thumbnailsHTML}
                         </div>
@@ -858,12 +920,35 @@
         }
 
         function updateGalleryDisplay() {
-            const mainImage = document.getElementById('galleryMainImage');
+            const mainMediaContainer = document.getElementById('galleryMainMedia');
             const counter = document.getElementById('galleryCounter');
             const thumbnails = document.querySelectorAll('.gallery-thumbnail');
 
-            if (mainImage && currentGallery[currentImageIndex]) {
-                mainImage.src = currentGallery[currentImageIndex];
+            if (mainMediaContainer && currentGallery[currentImageIndex]) {
+                const currentMedia = currentGallery[currentImageIndex];
+                
+                // Create new media element
+                let newMediaHTML = '';
+                if (currentMedia.type === 'video') {
+                    newMediaHTML = `
+                        <div class="gallery-video-container" id="galleryMainMedia">
+                            <iframe src="https://www.youtube.com/embed/${currentMedia.src}" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                    `;
+                } else {
+                    newMediaHTML = `
+                        <img src="${currentMedia.src}" alt="Project media" class="gallery-main-image" id="galleryMainMedia">
+                    `;
+                }
+                
+                // Replace the old media with new one
+                const oldMedia = mainMediaContainer;
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = newMediaHTML;
+                const newMedia = tempDiv.firstElementChild;
+                oldMedia.parentNode.replaceChild(newMedia, oldMedia);
             }
 
             if (counter) {
