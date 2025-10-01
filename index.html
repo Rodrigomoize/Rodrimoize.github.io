@@ -872,6 +872,10 @@
                 mainMediaHTML = `
                     <div class="gallery-video-container" id="galleryMainMedia">
                         <iframe src="https://www.youtube.com/embed/${firstMedia.src}" 
+                                title="YouTube video player" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerpolicy="strict-origin-when-cross-origin" 
                                 allowfullscreen>
                         </iframe>
                     </div>
@@ -932,8 +936,9 @@
                 if (currentMedia.type === 'video') {
                     newMediaHTML = `
                         <div class="gallery-video-container" id="galleryMainMedia">
-                            <iframe src="https://www.youtube.com/embed/${currentMedia.src}" 
-                                    allowfullscreen>
+                            <iframe src="https://www.youtube-nocookie.com/embed/${currentMedia.src}?rel=0&modestbranding=1" 
+                                    allowfullscreen
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
                             </iframe>
                         </div>
                     `;
