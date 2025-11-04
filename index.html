@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Rodrigo Álvarez Moizé - Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -14,9 +13,125 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: #1a1a2e;
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
+            scroll-behavior: smooth;
+        }
+
+        /* Barra de navegación */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(100, 200, 255, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: #64c8ff;
+        }
+
+        .lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            margin: auto;
+            width: 90vw;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .line {
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            top: 0;
+            left: 50%;
+            background: rgba(100, 200, 255, 0.1);
+            overflow: hidden;
+        }
+
+        .line::after {
+            content: '';
+            display: block;
+            position: absolute;
+            height: 15vh;
+            width: 100%;
+            top: -50%;
+            left: 0;
+            background: linear-gradient(to bottom, rgba(100, 200, 255, 0) 0%, rgba(100, 200, 255, 0.8) 75%, rgba(100, 200, 255, 1) 100%);
+            animation: drop 7s infinite;
+            animation-fill-mode: forwards;
+            animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+        }
+
+        .line:nth-child(1) {
+            margin-left: -35%;
+        }
+
+        .line:nth-child(1)::after {
+            animation-delay: 2s;
+        }
+
+        .line:nth-child(2) {
+            margin-left: 0;
+        }
+
+        .line:nth-child(2)::after {
+            animation-delay: 0s;
+        }
+
+        .line:nth-child(3) {
+            margin-left: 35%;
+        }
+
+        .line:nth-child(3)::after {
+            animation-delay: 2.5s;
+        }
+
+        @keyframes drop {
+            0% {
+                top: -50%;
+            }
+            100% {
+                top: 110%;
+            }
         }
 
         .container {
@@ -24,9 +139,10 @@
             margin: 0 auto;
             padding: 2rem;
             position: relative;
+            z-index: 1;
+            margin-top: 80px; /* Para compensar la navbar fija */
         }
 
-        /* Header principal */
         .header {
             text-align: center;
             margin-bottom: 4rem;
@@ -38,18 +154,42 @@
             height: 200px;
             border-radius: 50%;
             margin: 0 auto 2rem;
-            border: 6px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(45deg, #2c3e50, #3498db);
+            border: 6px solid rgba(100, 200, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(100, 200, 255, 0.4), 0 0 40px rgba(100, 200, 255, 0.2);
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 4rem;
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-photo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(100, 200, 255, 0.3), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .profile-photo:hover {
             transform: scale(1.05);
+            box-shadow: 0 25px 80px rgba(100, 200, 255, 0.6), 0 0 60px rgba(100, 200, 255, 0.4);
+            border-color: rgba(100, 200, 255, 0.6);
         }
 
         .name {
@@ -66,8 +206,139 @@
             margin: 0 auto;
             line-height: 1.6;
         }
+        
+        /* Sección de proyectos (ahora primero) */
+        .projects-section {
+            margin: 4rem 0;
+        }
 
-        /* Contact Section */
+        .projects-title {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(100, 200, 255, 0.3);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(100, 200, 255, 0.4);
+            border-color: rgba(100, 200, 255, 0.6);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-content {
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Sección de skills (nuevo diseño) */
+        .skills-section {
+            margin: 4rem 0;
+        }
+
+        .skills-title {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .skills-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(100, 200, 255, 0.3);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(100, 200, 255, 0.3);
+            border-color: rgba(100, 200, 255, 0.6);
+        }
+
+        .category-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .skill-item {
+            background: rgba(100, 200, 255, 0.1);
+            border: 1px solid rgba(100, 200, 255, 0.3);
+            border-radius: 10px;
+            padding: 0.8rem 1.2rem;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: rgba(100, 200, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(100, 200, 255, 0.2);
+        }
+
         .contact-section {
             text-align: center;
             margin: 4rem 0;
@@ -88,12 +359,12 @@
         }
 
         .contact-link {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(26, 26, 46, 0.7);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 1.5rem 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+            border: 1px solid rgba(100, 200, 255, 0.3);
+            transition: all 0.4s ease;
             text-decoration: none;
             color: white;
             display: flex;
@@ -101,151 +372,30 @@
             gap: 1rem;
             min-width: 200px;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
 
         .contact-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(100, 200, 255, 0.4);
+            border-color: rgba(100, 200, 255, 0.6);
         }
 
         .contact-icon {
             font-size: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .contact-text {
             font-weight: 600;
             font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Sección de aptitudes */
-        .skills-section {
-            margin: 4rem 0;
-        }
-
-        .skills-title {
-            text-align: center;
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        .skills-categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .category-title {
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .skill-item {
-            margin-bottom: 1rem;
-        }
-
-        .skill-name {
-            color: white;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .skill-bar {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            height: 8px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(90deg, #3498db, #2c3e50);
-            border-radius: 10px;
-            transition: width 2s ease-in-out;
-            width: 0;
-        }
-
-        /* Proyectos */
-        .projects-section {
-            margin: 4rem 0;
-        }
-
-        .projects-title {
-            text-align: center;
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            color: white;
-            overflow: hidden;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 20px 20px 0 0;
-        }
-
-        .project-content {
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .project-description {
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        /* Modal/Popup */
+        /* Modal/Popup mejorado */
         .modal {
             display: none;
             position: fixed;
@@ -253,11 +403,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(5px);
-            z-index: 1000;
+            z-index: 2000;
             justify-content: center;
             align-items: center;
+            padding: 2rem;
         }
 
         .modal.show {
@@ -265,16 +416,21 @@
         }
 
         .modal-content {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(26, 26, 46, 0.95);
             backdrop-filter: blur(20px);
             border-radius: 20px;
             padding: 3rem;
-            max-width: 900px;
-            width: 90%;
+            max-width: 95vw;
+            width: 1200px;
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
             animation: modalSlideIn 0.3s ease;
+            border: 1px solid rgba(100, 200, 255, 0.3);
+            box-shadow: 0 25px 80px rgba(100, 200, 255, 0.3);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
         }
 
         @keyframes modalSlideIn {
@@ -296,39 +452,73 @@
             border: none;
             font-size: 2rem;
             cursor: pointer;
-            color: #666;
+            color: white;
             transition: color 0.3s ease;
+            z-index: 10;
         }
 
         .close-btn:hover {
-            color: #333;
+            color: #64c8ff;
+        }
+
+        .modal-left {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .modal-right {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .modal h2 {
-            color: #333;
+            color: white;
             margin-bottom: 1rem;
-            font-size: 2rem;
+            font-size: 2.5rem;
         }
 
         .modal h3 {
-            color: #555;
+            color: #64c8ff;
             margin: 1.5rem 0 1rem 0;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
         }
 
         .modal p {
-            color: #666;
+            color: rgba(255, 255, 255, 0.8);
             line-height: 1.6;
             margin-bottom: 1rem;
         }
 
-        /* Image Gallery */
+        .role-section {
+            background: rgba(100, 200, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(100, 200, 255, 0.3);
+        }
+
+        .role-title {
+            color: #64c8ff;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .contribution-section {
+            background: rgba(100, 200, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(100, 200, 255, 0.2);
+        }
+
+        /* Image Gallery mejorada */
         .image-gallery {
-            margin: 2rem 0;
+            margin: 0;
         }
 
         .gallery-title {
-            color: #333;
+            color: white;
             font-size: 1.5rem;
             margin-bottom: 1rem;
             text-align: center;
@@ -337,17 +527,18 @@
         .gallery-main {
             position: relative;
             width: 100%;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            background: #f0f0f0;
+            height: 400px;
+            margin: 0 auto 1rem;
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 15px;
             overflow: hidden;
+            border: 1px solid rgba(100, 200, 255, 0.2);
         }
 
         .gallery-main-image {
             width: 100%;
-            height: 400px;
-            object-fit: cover;
+            height: 100%;
+            object-fit: contain;
             display: block;
         }
 
@@ -355,7 +546,7 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             color: white;
             border: none;
             padding: 1rem;
@@ -363,10 +554,11 @@
             font-size: 1.5rem;
             border-radius: 50%;
             transition: background 0.3s ease;
+            z-index: 5;
         }
 
         .gallery-nav:hover {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
         }
 
         .gallery-prev {
@@ -393,7 +585,7 @@
             display: flex;
             gap: 0.5rem;
             overflow-x: auto;
-            padding: 1rem 0;
+            padding: 0.5rem 0;
             justify-content: center;
         }
 
@@ -406,12 +598,13 @@
             opacity: 0.6;
             transition: opacity 0.3s ease, transform 0.3s ease;
             flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .gallery-thumbnail.active {
             opacity: 1;
             transform: scale(1.1);
-            border: 2px solid #3498db;
+            border: 2px solid #64c8ff;
         }
 
         .gallery-thumbnail:hover {
@@ -442,7 +635,7 @@
 
         .gallery-video-container {
             width: 100%;
-            height: 400px;
+            height: 100%;
             background: #000;
             border-radius: 15px;
             overflow: hidden;
@@ -490,7 +683,7 @@
                 gap: 1rem;
             }
 
-            .gallery-main-image {
+            .gallery-main {
                 height: 250px;
             }
 
@@ -502,40 +695,101 @@
                 padding: 0.5rem;
                 font-size: 1.2rem;
             }
+
+            .modal-content {
+                grid-template-columns: 1fr;
+                padding: 2rem 1.5rem;
+                gap: 2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
         }
 
-        /* Partículas de fondo */
-        .particles {
+        /* Líneas animadas mejoradas */
+        .lines {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
+            right: 0;
             height: 100%;
+            margin: auto;
+            width: 90vw;
+            z-index: -98;
             pointer-events: none;
-            z-index: -1;
         }
 
-        .particle {
+        .line {
             position: absolute;
-            width: 3px;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
+            width: 1px;
+            height: 100%;
+            top: 0;
+            left: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            overflow: hidden;
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
+        .line::after {
+            content: '';
+            display: block;
+            position: absolute;
+            height: 15vh;
+            width: 100%;
+            top: -50%;
+            left: 0;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
+            animation: drop 7s 0s infinite;
+            animation-fill-mode: forwards;
+            animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+        }
+
+        .line:nth-child(1) {
+            margin-left: -25%;
+        }
+
+        .line:nth-child(1)::after {
+            animation-delay: 2s;
+        }
+
+        .line:nth-child(3) {
+            margin-left: 25%;
+        }
+
+        .line:nth-child(3)::after {
+            animation-delay: 2.5s;
+        }
+
+        @keyframes drop {
+            0% {
+                top: -50%;
             }
-            50% {
-                transform: translateY(-20px) rotate(180deg);
+            100% {
+                top: 110%;
             }
         }
     </style>
 </head>
 <body>
-    <div class="particles" id="particles"></div>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Rodrigo Álvarez</div>
+            <div class="nav-links">
+                <a class="nav-link" onclick="scrollToSection('projects')">Projects</a>
+                <a class="nav-link" onclick="scrollToSection('skills')">Skills</a>
+                <a class="nav-link" onclick="scrollToSection('contact')">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Líneas animadas -->
+    <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+
     <div class="container">
         <!-- Header -->
         <div class="header fade-in">
@@ -548,84 +802,8 @@
             </p>
         </div>
 
-        <!-- Skills -->
-        <div class="skills-section">
-            <h2 class="skills-title fade-in">My Skills</h2>
-            <div class="skills-categories">
-                <div class="skill-category fade-in" onclick="openSkillModal('frontend')">
-                    <h3 class="category-title">Code</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>C#</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="90"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>C++</span>
-                            <span>70%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="70"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Python</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="80"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Lua</span>
-                            <span>60%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="60"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category fade-in" onclick="openSkillModal('tools')">
-                    <h3 class="category-title">Production</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Git</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="85"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Blender</span>
-                            <span>60%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="60"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Maya</span>
-                            <span>55%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="55"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Projects -->
-        <div class="projects-section">
+        <!-- Projects (ahora primero) -->
+        <div class="projects-section" id="projects">
             <h2 class="projects-title fade-in">My Projects</h2>
             <div class="projects-grid">
                 <div class="project-card fade-in" onclick="openProjectModal('proyecto1')">
@@ -657,32 +835,52 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Contact Section -->
-    <div class="contact-section fade-in">
-        <h2 class="contact-title">Connect with me</h2>
-        <div class="contact-links">
-            <a href="mailto:your.rodrimoize@gmail.com" class="contact-link" target="_blank">
-                <span class="contact-icon"></span>
-                <span class="contact-text">Gmail</span>
-            </a>
-            <a href="https://www.linkedin.com/in/rodrigo-%C3%A1lvarez-moiz%C3%A9-2657212b2/" class="contact-link" target="_blank">
-                <span class="contact-icon"></span>
-                <span class="contact-text">LinkedIn</span>
-            </a>
-            <a href="https://github.com/Rodrigomoize" class="contact-link" target="_blank">
-                <span class="contact-icon"></span>
-                <span class="contact-text">GitHub</span>
-            </a>
+        <!-- Skills (nuevo diseño) -->
+        <div class="skills-section" id="skills">
+            <h2 class="skills-title fade-in">My Skills</h2>
+            <div class="skills-categories">
+                <div class="skill-category fade-in">
+                    <h3 class="category-title">Code</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">C#</div>
+                        <div class="skill-item">C++</div>
+                        <div class="skill-item">Python</div>
+                        <div class="skill-item">Lua</div>
+                        <div class="skill-item">Unity</div>
+                        <div class="skill-item">Unreal</div>
+                    </div>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3 class="category-title">Production</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">Git</div>
+                        <div class="skill-item">Blender</div>
+                        <div class="skill-item">Maya</div>
+                        <div class="skill-item">Substance Painter</div>
+                        <div class="skill-item">Visual Studio</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Modal para aptitudes -->
-    <div class="modal" id="skillModal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('skillModal')">&times;</button>
-            <div id="skillModalContent"></div>
+    <!-- Contact Section -->
+    <div class="contact-section fade-in" id="contact">
+        <h2 class="contact-title">Connect with me</h2>
+        <div class="contact-links">
+            <a href="mailto:your.rodrimoize@gmail.com" class="contact-link" target="_blank">
+                <span class="contact-icon">✉️</span>
+                <span class="contact-text">Gmail</span>
+            </a>
+            <a href="https://www.linkedin.com/in/rodrigo-%C3%A1lvarez-moiz%C3%A9-2657212b2/" class="contact-link" target="_blank">
+                <span class="contact-icon">💼</span>
+                <span class="contact-text">LinkedIn</span>
+            </a>
+            <a href="https://github.com/Rodrigomoize" class="contact-link" target="_blank">
+                <span class="contact-icon">🐙</span>
+                <span class="contact-text">GitHub</span>
+            </a>
         </div>
     </div>
 
@@ -698,31 +896,6 @@
         // Current gallery state
         let currentGallery = [];
         let currentImageIndex = 0;
-
-        // Skills data translated to English
-        const skillsData = {
-            frontend: {
-                title: "Code",
-                description: "Different programming languages I have specialized in",
-                details: `<h3>Programming Languages</h3>
-                <p>• C# language studied at university and self-taught</p>
-                <p>• C++ language studied at university and self-taught</p>
-                <p>• Python language studied at university and self-taught</p>
-                <p>• Lua used in Project III course</p>
-                <h3>Experience:</h3>
-                <p>Besides being in my final year of university, I have participated in different projects to improve my skills and taking various courses in both Unity and Unreal</p>`
-            },
-            tools: {
-                title: "Production",
-                description: "Mastery of modern tools for development and modeling",
-                details: `<h3>Main Tools:</h3>
-                <p>• Git and GitHub for version control</p>
-                <p>• Blender for 3D modeling and animation</p>
-                <p>• Maya for 3D modeling and animation</p>
-                <h3>Experience:</h3>
-                <p>Learned at university and used for personal projects</p>`
-            }
-        };
 
         // Projects data with multiple images and videos
         const projectsData = {
@@ -746,12 +919,14 @@
                 <p>• Retro artistic theme</p>
                 <p>• Advanced replayability</p>
                 <p>• Hidden narrative</p>
-                <p>• Mild horror</p>`
+                <p>• Mild horror</p>`,
+                role: "Game Developer & Designer",
+                contribution: "I was responsible for implementing the core gameplay mechanics, including the trial and error system that responds to player actions. I designed the level progression and created several of the game's puzzles. Additionally, I collaborated on the narrative design to ensure it aligned with the game mechanics."
             },
             proyecto2: {
                 title: "Alien Cocktail",
                 description: "VR cocktail preparation game",
-                coverImage: "https://via.placeholder.com/300x200/FF6B6B/ffffff?text=VR+Game",
+                coverImage: "images/AlienCocktail.png",
                 media: [
                     { type: 'image', src: "images/AlienCocktail/AlienCocktail.png" },
                     //{ type: 'video', src: "dQw4w9WgXcQ" }
@@ -767,12 +942,14 @@
                 <p>• VR video game</p>
                 <p>• Creation and distribution of cocktails</p>
                 <p>• Comic and modern art</p>
-                <p>• Offline mode</p>`
+                <p>• Offline mode</p>`,
+                role: "VR Developer & 3D Artist",
+                contribution: "My main contribution was developing the VR interaction system that allows players to grab, mix, and serve ingredients. I also modeled several of the cocktail ingredients and bar equipment. I optimized the performance for VR and implemented the scoring system that evaluates the player's cocktail-making skills."
             },
             proyecto3: {
                 title: "Warhammer 40K: The Last Marine",
                 description: "Video game created in a proprietary engine called Coffee Engine developed for Project III course with Warhammer 40K theme, from there a team of 40 people divided by different departments carried out this project.",
-                coverImage: "https://via.placeholder.com/300x200/2C3E50/ffffff?text=Warhammer+40K",
+                coverImage: "images/w40k.png",
                 media: [                    
                     { type: 'video', src: "pNp_OPTwnTo" }
                 ],
@@ -787,21 +964,13 @@
                 <p>• Third-person game</p>
                 <p>• Developed in proprietary engine</p>
                 <p>• Action video game</p>
-                <p>• Developed in Lua</p>`
+                <p>• Developed in Lua</p>`,
+                role: "Gameplay Programmer & QA Tester",
+                contribution: "As part of a 40-person team, I focused on implementing enemy AI behaviors and combat mechanics. I was responsible for the weapon system and helped design the level progression. I also participated in extensive QA testing to identify and fix bugs, ensuring a smooth gameplay experience. My work with Lua scripting was crucial for implementing game logic within the proprietary engine."
             }
         };
 
         // Functions for modals
-        function openSkillModal(skillType) {
-            const skill = skillsData[skillType];
-            document.getElementById('skillModalContent').innerHTML = `
-                <h2>${skill.title}</h2>
-                <p><strong>${skill.description}</strong></p>
-                ${skill.details}
-            `;
-            document.getElementById('skillModal').classList.add('show');
-        }
-
         function openProjectModal(projectType) {
             const project = projectsData[projectType];
             currentGallery = project.media;
@@ -810,10 +979,24 @@
             const galleryHTML = createMediaGallery(project.media);
             
             document.getElementById('projectModalContent').innerHTML = `
-                <h2>${project.title}</h2>
-                <p><strong>${project.description}</strong></p>
-                ${galleryHTML}
-                ${project.details}
+                <div class="modal-left">
+                    <h2>${project.title}</h2>
+                    <p><strong>${project.description}</strong></p>
+                    ${project.details}
+                    
+                    <div class="role-section">
+                        <h3 class="role-title">My Role</h3>
+                        <p>${project.role}</p>
+                    </div>
+                    
+                    <div class="contribution-section">
+                        <h3>My Contribution</h3>
+                        <p>${project.contribution}</p>
+                    </div>
+                </div>
+                <div class="modal-right">
+                    ${galleryHTML}
+                </div>
             `;
             document.getElementById('projectModal').classList.add('show');
         }
@@ -950,36 +1133,17 @@
             }
         });
 
-        // Animate skill bars
-        function animateSkillBars() {
-            const progressBars = document.querySelectorAll('.skill-progress');
-            progressBars.forEach(bar => {
-                const width = bar.getAttribute('data-width');
-                setTimeout(() => {
-                    bar.style.width = width + '%';
-                }, 500);
-            });
-        }
-
-        // Create background particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
-                particlesContainer.appendChild(particle);
+        // Función para navegar a secciones
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
             }
         }
 
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            animateSkillBars();
-            createParticles();
+            // No hay barras de progreso que animar ahora
         });
 
         // Close modal with ESC and navigate gallery with arrow keys
