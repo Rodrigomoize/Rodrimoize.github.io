@@ -28,7 +28,7 @@
             width: 100%;
             background: rgba(26, 26, 46, 0.9);
             backdrop-filter: blur(10px);
-            z-index: 1000;
+            z-index: 2000;
             padding: 1rem 0;
             border-bottom: 1px solid rgba(100, 200, 255, 0.3);
         }
@@ -65,82 +65,13 @@
             color: #64c8ff;
         }
 
-        .lines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            margin: auto;
-            width: 90vw;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .line {
-            position: absolute;
-            width: 1px;
-            height: 100%;
-            top: 0;
-            left: 50%;
-            background: rgba(100, 200, 255, 0.1);
-            overflow: hidden;
-        }
-
-        .line::after {
-            content: '';
-            display: block;
-            position: absolute;
-            height: 15vh;
-            width: 100%;
-            top: -50%;
-            left: 0;
-            background: linear-gradient(to bottom, rgba(100, 200, 255, 0) 0%, rgba(100, 200, 255, 0.8) 75%, rgba(100, 200, 255, 1) 100%);
-            animation: drop 7s infinite;
-            animation-fill-mode: forwards;
-            animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-        }
-
-        .line:nth-child(1) {
-            margin-left: -35%;
-        }
-
-        .line:nth-child(1)::after {
-            animation-delay: 2s;
-        }
-
-        .line:nth-child(2) {
-            margin-left: 0;
-        }
-
-        .line:nth-child(2)::after {
-            animation-delay: 0s;
-        }
-
-        .line:nth-child(3) {
-            margin-left: 35%;
-        }
-
-        .line:nth-child(3)::after {
-            animation-delay: 2.5s;
-        }
-
-        @keyframes drop {
-            0% {
-                top: -50%;
-            }
-            100% {
-                top: 110%;
-            }
-        }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
             position: relative;
             z-index: 1;
-            margin-top: 80px; /* Para compensar la navbar fija */
+            margin-top: 80px;
         }
 
         .header {
@@ -207,7 +138,7 @@
             line-height: 1.6;
         }
         
-        /* Sección de proyectos (ahora primero) */
+        /* Sección de proyectos */
         .projects-section {
             margin: 4rem 0;
         }
@@ -271,7 +202,7 @@
             line-height: 1.6;
         }
 
-        /* Sección de skills (nuevo diseño) */
+        /* Sección de skills */
         .skills-section {
             margin: 4rem 0;
         }
@@ -395,7 +326,7 @@
             z-index: 1;
         }
 
-        /* Modal/Popup mejorado */
+        /* Modal/Popup - VERSIÓN MEJORADA CON SCROLLBAR */
         .modal {
             display: none;
             position: fixed;
@@ -403,8 +334,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -428,9 +359,6 @@
             animation: modalSlideIn 0.3s ease;
             border: 1px solid rgba(100, 200, 255, 0.3);
             box-shadow: 0 25px 80px rgba(100, 200, 255, 0.3);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
         }
 
         @keyframes modalSlideIn {
@@ -461,190 +389,206 @@
             color: #64c8ff;
         }
 
-        .modal-left {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+        /* Scrollbar personalizado */
+        .modal-content::-webkit-scrollbar {
+            width: 12px;
         }
 
-        .modal-right {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(26, 26, 46, 0.8);
+            border-radius: 10px;
+            margin: 5px 0;
         }
 
-        .modal h2 {
+        .modal-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, rgba(100, 200, 255, 0.6), rgba(100, 200, 255, 0.9));
+            border-radius: 10px;
+            border: 2px solid rgba(26, 26, 46, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, rgba(100, 200, 255, 0.8), rgba(100, 200, 255, 1));
+            box-shadow: 0 0 10px rgba(100, 200, 255, 0.5);
+        }
+
+        /* Scrollbar para Firefox */
+        .modal-content {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(100, 200, 255, 0.6) rgba(26, 26, 46, 0.8);
+        }
+
+        /* Contenido del modal - diseño lineal */
+        .project-header {
+            margin-bottom: 2rem;
+            border-bottom: 2px solid rgba(100, 200, 255, 0.3);
+            padding-bottom: 1.5rem;
+        }
+
+        .project-title-main {
             color: white;
-            margin-bottom: 1rem;
-            font-size: 2.5rem;
-        }
-
-        .modal h3 {
-            color: #64c8ff;
-            margin: 1.5rem 0 1rem 0;
-            font-size: 1.5rem;
-        }
-
-        .modal p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .role-section {
-            background: rgba(100, 200, 255, 0.1);
-            border-radius: 15px;
-            padding: 1.5rem;
-            border: 1px solid rgba(100, 200, 255, 0.3);
-        }
-
-        .role-title {
-            color: #64c8ff;
-            font-size: 1.2rem;
+            font-size: 2.8rem;
+            font-weight: 700;
             margin-bottom: 0.5rem;
-            font-weight: 600;
         }
 
-        .contribution-section {
-            background: rgba(100, 200, 255, 0.05);
-            border-radius: 15px;
+        .project-subtitle {
+            color: #64c8ff;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .meta-item {
+            background: rgba(100, 200, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            border-left: 4px solid #64c8ff;
+        }
+
+        .meta-label {
+            color: #64c8ff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .meta-value {
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .content-section {
+            background: rgba(30, 30, 50, 0.6);
+            border-radius: 12px;
             padding: 1.5rem;
             border: 1px solid rgba(100, 200, 255, 0.2);
+            margin-bottom: 1.5rem;
         }
 
-        /* Image Gallery mejorada */
-        .image-gallery {
-            margin: 0;
-        }
-
-        .gallery-title {
-            color: white;
-            font-size: 1.5rem;
+        .section-title {
+            color: #64c8ff;
+            font-size: 1.3rem;
+            font-weight: 600;
             margin-bottom: 1rem;
-            text-align: center;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(100, 200, 255, 0.3);
+        }
+
+        .section-content {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .section-content ul {
+            padding-left: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .section-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Galerías */
+        .gallery-section {
+            background: rgba(20, 20, 35, 0.8);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(100, 200, 255, 0.2);
+            margin-bottom: 1.5rem;
+        }
+
+        .gallery-display {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(100, 200, 255, 0.1);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .gallery-main {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            margin: 0 auto 1rem;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid rgba(100, 200, 255, 0.2);
-        }
-
-        .gallery-main-image {
             width: 100%;
             height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-main img, .gallery-main iframe {
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
-            display: block;
         }
 
         .gallery-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            border: none;
-            padding: 1rem;
-            cursor: pointer;
-            font-size: 1.5rem;
-            border-radius: 50%;
-            transition: background 0.3s ease;
-            z-index: 5;
-        }
-
-        .gallery-nav:hover {
-            background: rgba(0, 0, 0, 0.9);
-        }
-
-        .gallery-prev {
-            left: 1rem;
-        }
-
-        .gallery-next {
-            right: 1rem;
-        }
-
-        .gallery-counter {
-            position: absolute;
-            bottom: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
         }
 
         .gallery-thumbnails {
             display: flex;
             gap: 0.5rem;
+            flex: 1;
             overflow-x: auto;
             padding: 0.5rem 0;
-            justify-content: center;
         }
 
         .gallery-thumbnail {
             width: 80px;
             height: 60px;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             opacity: 0.6;
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
             flex-shrink: 0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .gallery-thumbnail.active {
             opacity: 1;
-            transform: scale(1.1);
-            border: 2px solid #64c8ff;
+            border-color: #64c8ff;
         }
 
         .gallery-thumbnail:hover {
             opacity: 1;
         }
 
-        .video-thumbnail {
-            position: relative;
-        }
-
-        .video-thumbnail::after {
-            content: '▶';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1.5rem;
+        .nav-button {
+            background: rgba(100, 200, 255, 0.2);
+            border: none;
             color: white;
-            background: rgba(0, 0, 0, 0.7);
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding-left: 3px;
+            transition: all 0.3s ease;
+            margin: 0 0.5rem;
         }
 
-        .gallery-video-container {
-            width: 100%;
-            height: 100%;
-            background: #000;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-
-        .gallery-video-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .nav-button:hover {
+            background: rgba(100, 200, 255, 0.4);
+            transform: scale(1.1);
         }
 
         /* Animaciones de entrada */
@@ -683,23 +627,20 @@
                 gap: 1rem;
             }
 
-            .gallery-main {
-                height: 250px;
-            }
-
-            .gallery-video-container {
-                height: 250px;
-            }
-
-            .gallery-nav {
-                padding: 0.5rem;
-                font-size: 1.2rem;
+            .project-meta {
+                grid-template-columns: 1fr;
             }
 
             .modal-content {
-                grid-template-columns: 1fr;
-                padding: 2rem 1.5rem;
-                gap: 2rem;
+                padding: 1.5rem;
+            }
+
+            .project-title-main {
+                font-size: 2rem;
+            }
+
+            .gallery-display {
+                height: 250px;
             }
 
             .nav-links {
@@ -707,66 +648,71 @@
             }
         }
 
-        /* Líneas animadas mejoradas */
+        /* LÍNEAS DIAGONALES PARALELAS */
         .lines {
             position: fixed;
-            top: 0;
+            top: -20%;
             left: 0;
             right: 0;
-            height: 100%;
-            margin: auto;
-            width: 90vw;
+            height: 140%;
+            width: 120vw;
             z-index: -98;
             pointer-events: none;
+            overflow: visible;
+            transform: rotate(-15deg);
+            transform-origin: center center;
         }
 
         .line {
             position: absolute;
-            width: 1px;
-            height: 100%;
+            width: 2px;
+            height: 140%;
             top: 0;
-            left: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            overflow: hidden;
+            background: rgba(255, 255, 255, 0.06);
+            overflow: visible;
+            filter: blur(0.2px);
         }
 
         .line::after {
             content: '';
             display: block;
             position: absolute;
-            height: 15vh;
+            height: 18vh;
             width: 100%;
             top: -50%;
             left: 0;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
-            animation: drop 7s 0s infinite;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(100,200,255,0.9) 75%, rgba(100,200,255,1) 100%);
+            animation: drop 6.5s infinite;
             animation-fill-mode: forwards;
             animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
         }
 
-        .line:nth-child(1) {
-            margin-left: -25%;
-        }
+        /* Distribución uniforme de líneas paralelas */
+        .line:nth-child(1) { left: 5%; }
+        .line:nth-child(2) { left: 15%; }
+        .line:nth-child(3) { left: 25%; }
+        .line:nth-child(4) { left: 35%; }
+        .line:nth-child(5) { left: 45%; }
+        .line:nth-child(6) { left: 55%; }
+        .line:nth-child(7) { left: 65%; }
+        .line:nth-child(8) { left: 75%; }
+        .line:nth-child(9) { left: 85%; }
+        .line:nth-child(10) { left: 95%; }
 
-        .line:nth-child(1)::after {
-            animation-delay: 2s;
-        }
-
-        .line:nth-child(3) {
-            margin-left: 25%;
-        }
-
-        .line:nth-child(3)::after {
-            animation-delay: 2.5s;
-        }
+        .line:nth-child(1)::after { animation-delay: 0.8s; }
+        .line:nth-child(2)::after { animation-delay: 1.3s; }
+        .line:nth-child(3)::after { animation-delay: 0.4s; }
+        .line:nth-child(4)::after { animation-delay: 0s; }
+        .line:nth-child(5)::after { animation-delay: 1.1s; }
+        .line:nth-child(6)::after { animation-delay: 2s; }
+        .line:nth-child(7)::after { animation-delay: 2.6s; }
+        .line:nth-child(8)::after { animation-delay: 1.7s; }
+        .line:nth-child(9)::after { animation-delay: 0.9s; }
+        .line:nth-child(10)::after { animation-delay: 3s; }
 
         @keyframes drop {
-            0% {
-                top: -50%;
-            }
-            100% {
-                top: 110%;
-            }
+            0% { top: -60%; }
+            100% { top: 120%; }
         }
     </style>
 </head>
@@ -788,6 +734,13 @@
         <div class="line"></div>
         <div class="line"></div>
         <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
     </div>
 
     <div class="container">
@@ -802,7 +755,7 @@
             </p>
         </div>
 
-        <!-- Projects (ahora primero) -->
+        <!-- Projects -->
         <div class="projects-section" id="projects">
             <h2 class="projects-title fade-in">My Projects</h2>
             <div class="projects-grid">
@@ -836,7 +789,7 @@
             </div>
         </div>
 
-        <!-- Skills (nuevo diseño) -->
+        <!-- Skills -->
         <div class="skills-section" id="skills">
             <h2 class="skills-title fade-in">My Skills</h2>
             <div class="skills-categories">
@@ -893,232 +846,253 @@
     </div>
 
     <script>
-        // Current gallery state
-        let currentGallery = [];
+        // Almacenar las galerías actuales
+        let currentProjectImages = [];
+        let currentProjectVideos = [];
         let currentImageIndex = 0;
+        let currentVideoIndex = 0;
 
-        // Projects data with multiple images and videos
+        // Projects data
         const projectsData = {
             proyecto1: {
                 title: "The Asylum of Creation",
-                description: "Complete horror game platform",
-                coverImage: "images/AssylumOfCreation.png",
+                subtitle: "Indie horror game created for CITM GameJam 2024",
+                description: "Game developed for the 10th edition of CITM GameJam with the theme 'Trial and Error' with sub-themes 'The Button' and 'Replayability'",
+                role: "Game Developer & Designer",
+                technologies: ["Unity", "Blender", "Substance Painter"],
+                period: "2024",
+                features: [
+                    "Retro artistic theme",
+                    "Advanced replayability",
+                    "Hidden narrative",
+                    "Mild horror elements"
+                ],
+                contribution: "I was responsible for implementing the core gameplay mechanics, including the trial and error system that responds to player actions. I designed the level progression and created several of the game's puzzles. Additionally, I collaborated on the narrative design to ensure it aligned with the game mechanics.",
                 media: [
+                    { type: 'image', src: "images/AssylumOfCreation.png" },
                     { type: 'image', src: "images/GameJam/ENTRADA.png" },
                     { type: 'image', src: "images/GameJam/image.png" },
                     { type: 'image', src: "images/GameJam/LEVEL3.png" },
                     { type: 'video', src: "CIh03oIrMgc" }
-                ],
-                details: `<h3>Project Description:</h3>
-                <p>Game developed for the 10th edition of CITM GameJam with the theme "Trial and Error" with sub-themes "The Button" and "Replayability"</p>
-                <h3>Technologies Used:</h3>
-                <p>• Unity</p>
-                <p>• Blender</p>
-                <p>• Substance Painter</p>
-                <h3>Main Features:</h3>
-                <p>• Retro artistic theme</p>
-                <p>• Advanced replayability</p>
-                <p>• Hidden narrative</p>
-                <p>• Mild horror</p>`,
-                role: "Game Developer & Designer",
-                contribution: "I was responsible for implementing the core gameplay mechanics, including the trial and error system that responds to player actions. I designed the level progression and created several of the game's puzzles. Additionally, I collaborated on the narrative design to ensure it aligned with the game mechanics."
+                ]
             },
             proyecto2: {
                 title: "Alien Cocktail",
-                description: "VR cocktail preparation game",
-                coverImage: "images/AlienCocktail.png",
-                media: [
-                    { type: 'image', src: "images/AlienCocktail/AlienCocktail.png" },
-                    //{ type: 'video', src: "dQw4w9WgXcQ" }
-                ],
-                details: `<h3>Project Description:</h3>
-                <p>VR video game developed in Unity for a course that consists of creating different cocktails within a certain time to receive a certain score.</p>
-                <h3>Technologies Used:</h3>
-                <p>• Unity</p>
-                <p>• Blender</p>
-                <p>• Substance Painter</p>
-                <p>• Visual Studio Code</p>
-                <h3>Main Features:</h3>
-                <p>• VR video game</p>
-                <p>• Creation and distribution of cocktails</p>
-                <p>• Comic and modern art</p>
-                <p>• Offline mode</p>`,
+                subtitle: "VR cocktail preparation game",
+                description: "VR video game developed in Unity for a course that consists of creating different cocktails within a certain time to receive a certain score.",
                 role: "VR Developer & 3D Artist",
-                contribution: "My main contribution was developing the VR interaction system that allows players to grab, mix, and serve ingredients. I also modeled several of the cocktail ingredients and bar equipment. I optimized the performance for VR and implemented the scoring system that evaluates the player's cocktail-making skills."
+                technologies: ["Unity", "Blender", "Substance Painter", "Visual Studio Code"],
+                period: "2023",
+                features: [
+                    "VR immersive experience",
+                    "Cocktail creation mechanics",
+                    "Comic and modern art style",
+                    "Offline multiplayer mode"
+                ],
+                contribution: "My main contribution was developing the VR interaction system that allows players to grab, mix, and serve ingredients. I also modeled several of the cocktail ingredients and bar equipment. I optimized the performance for VR and implemented the scoring system that evaluates the player's cocktail-making skills.",
+                media: [
+                    { type: 'image', src: "images/AlienCocktail.png" },
+                    { type: 'image', src: "images/AlienCocktail/AlienCocktail.png" }
+                ]
             },
             proyecto3: {
                 title: "Warhammer 40K: The Last Marine",
-                description: "Video game created in a proprietary engine called Coffee Engine developed for Project III course with Warhammer 40K theme, from there a team of 40 people divided by different departments carried out this project.",
-                coverImage: "images/w40k.png",
-                media: [                    
-                    { type: 'video', src: "pNp_OPTwnTo" }
+                subtitle: "THE LAST MARINE",
+                description: "Video game created in a proprietary engine called Coffee Engine developed for Project III course with Warhammer 40K theme. A team of 40 people divided by different departments carried out this project.",
+                role: "Level Designer, GA, Audio Designer & VPL Artist",
+                technologies: ["Coffee Engine", "Photoshop", "Pigma", "Blender"],
+                period: "01/02/2025 - 01/04/2025 (6 months)",
+                features: [
+                    "Third-person action game",
+                    "Proprietary engine development",
+                    "Warhammer 40K universe",
+                    "Lua scripting implementation"
                 ],
-                details: `<h3>Project Description:</h3>
-                <p>Third-person game where you'll live the experience of the last marine, where you'll have to face different enemies to reach the end of the adventure.</p>
-                <h3>Technologies Used:</h3>
-                <p>• Coffee Engine</p>
-                <p>• Substance Painter</p>
-                <p>• Blender</p>
-                <p>• Visual Studio Code</p>
-                <h3>Main Features:</h3>
-                <p>• Third-person game</p>
-                <p>• Developed in proprietary engine</p>
-                <p>• Action video game</p>
-                <p>• Developed in Lua</p>`,
-                role: "Gameplay Programmer & QA Tester",
-                contribution: "As part of a 40-person team, I focused on implementing enemy AI behaviors and combat mechanics. I was responsible for the weapon system and helped design the level progression. I also participated in extensive QA testing to identify and fix bugs, ensuring a smooth gameplay experience. My work with Lua scripting was crucial for implementing game logic within the proprietary engine."
+                contribution: `Led level design initiatives, creating designs and building 30 blankets to define spatial layout and gameplay flow. Shaped a difficulty curve that provided balanced and engaging progression through multiple GA-driven iterations. Set up navigation for AI agents and worked on audio design and particle effects to enhance atmosphere and gameplay clarity. Played a major role in QA, focusing on environment consistency and gamefeel.`,
+                media: [                    
+                    { type: 'video', src: "pNp_OPTwnTo" },
+                    { type: 'image', src: "images/w40k.png" }
+                ]
             }
         };
 
         // Functions for modals
         function openProjectModal(projectType) {
             const project = projectsData[projectType];
-            currentGallery = project.media;
-            currentImageIndex = 0;
             
-            const galleryHTML = createMediaGallery(project.media);
+            // Separar imágenes y videos
+            currentProjectImages = project.media.filter(m => m.type === 'image');
+            currentProjectVideos = project.media.filter(m => m.type === 'video');
+            currentImageIndex = 0;
+            currentVideoIndex = 0;
             
             document.getElementById('projectModalContent').innerHTML = `
-                <div class="modal-left">
-                    <h2>${project.title}</h2>
-                    <p><strong>${project.description}</strong></p>
-                    ${project.details}
+                <div class="project-header">
+                    <h1 class="project-title-main">${project.title}</h1>
+                    <div class="project-subtitle">${project.subtitle}</div>
+                    <p class="section-content">${project.description}</p>
                     
-                    <div class="role-section">
-                        <h3 class="role-title">My Role</h3>
-                        <p>${project.role}</p>
+                    <div class="project-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Role</div>
+                            <div class="meta-value">${project.role}</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Technologies</div>
+                            <div class="meta-value">${project.technologies.join(', ')}</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Development Period</div>
+                            <div class="meta-value">${project.period}</div>
+                        </div>
                     </div>
-                    
-                    <div class="contribution-section">
-                        <h3>My Contribution</h3>
+                </div>
+                
+                <div class="content-section">
+                    <h3 class="section-title">About the Project</h3>
+                    <div class="section-content">
+                        <p>${project.description}</p>
+                        <h4>Main Features:</h4>
+                        <ul>
+                            ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h3 class="section-title">My Contribution</h3>
+                    <div class="section-content">
                         <p>${project.contribution}</p>
                     </div>
                 </div>
-                <div class="modal-right">
-                    ${galleryHTML}
-                </div>
+                
+                ${currentProjectImages.length > 0 ? `
+                    <div class="gallery-section">
+                        <h3 class="section-title">Image Gallery</h3>
+                        <div class="gallery-display">
+                            <div class="gallery-main" id="imageGalleryMain">
+                                ${renderImage(currentProjectImages[0])}
+                            </div>
+                        </div>
+                        
+                        ${currentProjectImages.length > 1 ? `
+                            <div class="gallery-nav">
+                                <button class="nav-button" onclick="previousImage()">‹</button>
+                                <div class="gallery-thumbnails">
+                                    ${currentProjectImages.map((image, index) => `
+                                        <img src="${image.src}" 
+                                             class="gallery-thumbnail ${index === 0 ? 'active' : ''}" 
+                                             alt="Image ${index + 1}"
+                                             onclick="changeImage(${index})">
+                                    `).join('')}
+                                </div>
+                                <button class="nav-button" onclick="nextImage()">›</button>
+                            </div>
+                        ` : ''}
+                    </div>
+                ` : ''}
+                
+                ${currentProjectVideos.length > 0 ? `
+                    <div class="gallery-section">
+                        <h3 class="section-title">Video Gallery</h3>
+                        <div class="gallery-display">
+                            <div class="gallery-main" id="videoGalleryMain">
+                                ${renderVideo(currentProjectVideos[0])}
+                            </div>
+                        </div>
+                        
+                        ${currentProjectVideos.length > 1 ? `
+                            <div class="gallery-nav">
+                                <button class="nav-button" onclick="previousVideo()">‹</button>
+                                <div class="gallery-thumbnails">
+                                    ${currentProjectVideos.map((video, index) => `
+                                        <img src="https://img.youtube.com/vi/${video.src}/hqdefault.jpg" 
+                                             class="gallery-thumbnail ${index === 0 ? 'active' : ''}" 
+                                             alt="Video ${index + 1}"
+                                             onclick="changeVideo(${index})">
+                                    `).join('')}
+                                </div>
+                                <button class="nav-button" onclick="nextVideo()">›</button>
+                            </div>
+                        ` : ''}
+                    </div>
+                ` : ''}
             `;
             document.getElementById('projectModal').classList.add('show');
         }
 
-        function createMediaGallery(mediaArray) {
-            if (!mediaArray || mediaArray.length === 0) {
-                return '';
-            }
+        function renderImage(image) {
+            return `<img src="${image.src}" alt="Project image" style="width:100%; height:100%; object-fit:contain;">`;
+        }
 
-            let thumbnailsHTML = '';
-            mediaArray.forEach((media, index) => {
-                const thumbnailSrc = media.type === 'video' 
-                    ? `https://img.youtube.com/vi/${media.src}/hqdefault.jpg`
-                    : media.src;
-                
-                const videoClass = media.type === 'video' ? 'video-thumbnail' : '';
-                
-                thumbnailsHTML += `
-                    <img src="${thumbnailSrc}" alt="Thumbnail ${index + 1}" 
-                         class="gallery-thumbnail ${videoClass} ${index === 0 ? 'active' : ''}" 
-                         onclick="changeGalleryImage(${index})">
-                `;
-            });
-
-            const firstMedia = mediaArray[0];
-            let mainMediaHTML = '';
-            
-            if (firstMedia.type === 'video') {
-                mainMediaHTML = `
-                    <div class="gallery-video-container" id="galleryMainMedia">
-                        <iframe src="https://www.youtube.com/embed/${firstMedia.src}" 
-                                title="YouTube video player" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                referrerpolicy="strict-origin-when-cross-origin" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                `;
-            } else {
-                mainMediaHTML = `
-                    <img src="${firstMedia.src}" alt="Project media" class="gallery-main-image" id="galleryMainMedia">
-                `;
-            }
-
+        function renderVideo(video) {
             return `
-                <div class="image-gallery">
-                    <h3 class="gallery-title">Project Gallery</h3>
-                    <div class="gallery-main">
-                        ${mainMediaHTML}
-                        ${mediaArray.length > 1 ? `
-                            <button class="gallery-nav gallery-prev" onclick="previousImage()">&#8249;</button>
-                            <button class="gallery-nav gallery-next" onclick="nextImage()">&#8250;</button>
-                            <div class="gallery-counter">
-                                <span id="galleryCounter">1 / ${mediaArray.length}</span>
-                            </div>
-                        ` : ''}
-                    </div>
-                    ${mediaArray.length > 1 ? `
-                        <div class="gallery-thumbnails">
-                            ${thumbnailsHTML}
-                        </div>
-                    ` : ''}
-                </div>
+                <iframe src="https://www.youtube.com/embed/${video.src}" 
+                        style="width:100%; height:100%; border:none;"
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                </iframe>
             `;
         }
 
-        function changeGalleryImage(index) {
+        // Funciones para navegación de imágenes
+        function changeImage(index) {
             currentImageIndex = index;
-            updateGalleryDisplay();
+            updateImageDisplay();
         }
 
         function previousImage() {
-            currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : currentGallery.length - 1;
-            updateGalleryDisplay();
+            currentImageIndex = currentImageIndex > 0 ? currentImageIndex - 1 : currentProjectImages.length - 1;
+            updateImageDisplay();
         }
 
         function nextImage() {
-            currentImageIndex = currentImageIndex < currentGallery.length - 1 ? currentImageIndex + 1 : 0;
-            updateGalleryDisplay();
+            currentImageIndex = currentImageIndex < currentProjectImages.length - 1 ? currentImageIndex + 1 : 0;
+            updateImageDisplay();
         }
 
-        function updateGalleryDisplay() {
-            const mainMediaContainer = document.getElementById('galleryMainMedia');
-            const counter = document.getElementById('galleryCounter');
-            const thumbnails = document.querySelectorAll('.gallery-thumbnail');
-
-            if (mainMediaContainer && currentGallery[currentImageIndex]) {
-                const currentMedia = currentGallery[currentImageIndex];
-                
-                // Create new media element
-                let newMediaHTML = '';
-                if (currentMedia.type === 'video') {
-                    newMediaHTML = `
-                        <div class="gallery-video-container" id="galleryMainMedia">
-                            <iframe src="https://www.youtube-nocookie.com/embed/${currentMedia.src}?rel=0&modestbranding=1" 
-                                    allowfullscreen
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
-                            </iframe>
-                        </div>
-                    `;
-                } else {
-                    newMediaHTML = `
-                        <img src="${currentMedia.src}" alt="Project media" class="gallery-main-image" id="galleryMainMedia">
-                    `;
-                }
-                
-                // Replace the old media with new one
-                const oldMedia = mainMediaContainer;
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = newMediaHTML;
-                const newMedia = tempDiv.firstElementChild;
-                oldMedia.parentNode.replaceChild(newMedia, oldMedia);
+        function updateImageDisplay() {
+            const imageMain = document.getElementById('imageGalleryMain');
+            const thumbnails = document.querySelectorAll('.gallery-section:nth-of-type(1) .gallery-thumbnail');
+            
+            if (imageMain && currentProjectImages[currentImageIndex]) {
+                imageMain.innerHTML = renderImage(currentProjectImages[currentImageIndex]);
             }
-
-            if (counter) {
-                counter.textContent = `${currentImageIndex + 1} / ${currentGallery.length}`;
-            }
-
-            // Update thumbnail active state
+            
             thumbnails.forEach((thumb, index) => {
                 thumb.classList.toggle('active', index === currentImageIndex);
+            });
+        }
+
+        // Funciones para navegación de videos
+        function changeVideo(index) {
+            currentVideoIndex = index;
+            updateVideoDisplay();
+        }
+
+        function previousVideo() {
+            currentVideoIndex = currentVideoIndex > 0 ? currentVideoIndex - 1 : currentProjectVideos.length - 1;
+            updateVideoDisplay();
+        }
+
+        function nextVideo() {
+            currentVideoIndex = currentVideoIndex < currentProjectVideos.length - 1 ? currentVideoIndex + 1 : 0;
+            updateVideoDisplay();
+        }
+
+        function updateVideoDisplay() {
+            const videoMain = document.getElementById('videoGalleryMain');
+            const thumbnails = document.querySelectorAll('.gallery-section:nth-of-type(2) .gallery-thumbnail');
+            
+            if (videoMain && currentProjectVideos[currentVideoIndex]) {
+                videoMain.innerHTML = renderVideo(currentProjectVideos[currentVideoIndex]);
+            }
+            
+            thumbnails.forEach((thumb, index) => {
+                thumb.classList.toggle('active', index === currentVideoIndex);
             });
         }
 
@@ -1141,26 +1115,12 @@
             }
         }
 
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            // No hay barras de progreso que animar ahora
-        });
-
-        // Close modal with ESC and navigate gallery with arrow keys
+        // Close modal with ESC key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 document.querySelectorAll('.modal.show').forEach(modal => {
                     modal.classList.remove('show');
                 });
-            }
-            
-            // Navigate gallery with arrow keys when modal is open
-            if (document.getElementById('projectModal').classList.contains('show')) {
-                if (e.key === 'ArrowLeft') {
-                    previousImage();
-                } else if (e.key === 'ArrowRight') {
-                    nextImage();
-                }
             }
         });
     </script>
