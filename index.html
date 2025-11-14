@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rodrigo Álvarez Moizé - Portfolio</title>
+
     <style>
-       /* Definiciones de Variables Verdes */
+
        :root {
+
             --accent-green: #00ff7f; /* Verde brillante neón */
             --dark-background: #000000; /* Fondo oscuro verdoso */
             --darker-background: #0d1415; /* Fondo más oscuro */
@@ -14,40 +16,49 @@
             --border-alpha: rgba(0, 255, 127, 0.3); /* Verde con opacidad para bordes */
             --shadow-alpha: rgba(0, 255, 127, 0.4); /* Verde con opacidad para sombras */
             --hover-shadow-alpha: rgba(0, 255, 127, 0.2); /* Sombra ligera para hover */
+
         }
 
-        @keyframes gradient-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
         * {
+
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         body {
+
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--dark-background); 
+            background: var(--dark-background);
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
             scroll-behavior: smooth;
+
         }
 
         /* Barra de navegación */
+
         .navbar {
+
             position: fixed;
+
             top: 0;
+
             left: 0;
+
             width: 100%;
+
             background: rgba(16, 26, 28, 0.9); /* Fondo oscuro coherente con el tema */
+
             backdrop-filter: blur(10px);
+
             z-index: 2000;
+
             padding: 1rem 0;
+
             border-bottom: 1px solid var(--border-alpha); /* Borde verde */
+
         }
 
         .nav-container {
@@ -103,7 +114,8 @@
             border-radius: 50%;
             margin: 0 auto 2rem;
             border: 6px solid var(--border-alpha); 
-            background: linear-gradient(45deg, var(--dark-background), var(--darker-background)); 
+            box-shadow: 0 20px 60px var(--shadow-alpha), 0 0 40px var(--shadow-alpha); /* Sombra verde */
+            background: linear-gradient(45deg, rgba(16, 26, 28, 0.8), rgba(13, 14, 15, 0.9)); 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -120,6 +132,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
+            background: linear-gradient(45deg, transparent, var(--border-alpha), transparent); /* Shimmer verde */
             animation: shimmer 3s infinite;
         }
 
@@ -143,6 +156,7 @@
             font-weight: 700;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            color: white; /* Asegurar texto blanco */
         }
 
         .description {
@@ -151,6 +165,7 @@
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
+            color: white; /* Asegurar texto blanco */
         }
         
         /* Sección de proyectos */
@@ -173,7 +188,7 @@
         }
 
         .project-card {
-            background: rgba(16, 26, 28, 0.7); /* Fondo oscuro coherente con el tema */
+            background: var(--dark-background); /* Fondo oscuro transparente */
             backdrop-filter: blur(10px);
             border-radius: 20px;
             border: 1px solid var(--border-alpha); 
@@ -210,11 +225,13 @@
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 1rem;
+            color: white; /* Asegurar texto blanco */
         }
 
         .project-description {
             opacity: 0.9;
             line-height: 1.6;
+            color: white; /* Asegurar texto blanco */
         }
 
         /* Sección de skills */
@@ -237,7 +254,7 @@
         }
 
         .skill-category {
-            background: rgba(16, 26, 28, 0.7); /* Fondo oscuro coherente con el tema */
+            background: var(--dark-background); /* Fondo oscuro transparente */
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 2rem;
@@ -296,6 +313,7 @@
             font-size: 2.5rem;
             margin-bottom: 2rem;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            color: white; /* Asegurar texto blanco */
         }
 
         .email-link {
@@ -331,7 +349,7 @@
             align-items: center;
             justify-content: center;
 
-            background: rgba(16, 26, 28, 0.7);
+            background: var(--dark-background); /* Fondo oscuro transparente */
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-alpha);
             transition: all 0.4s ease;
@@ -344,11 +362,13 @@
         .contact-link.icon-only:hover {
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 15px 40px var(--shadow-alpha); 
-            border-color: rgba(0, 255, 127, 0.6);
+            border-color: rgba(0, 255, 127, 0.6); /* Borde hover verde */
         }
 
+        /* Estilo para las imágenes de los iconos */
         .contact-icon-img {
-            width: 70px;
+            width: 40px; 
+            height: 40px;
             object-fit: contain;
             position: relative;
             z-index: 1;
@@ -376,7 +396,7 @@
         }
 
         .modal-content {
-            background: rgba(16, 26, 28, 0.95); /* Fondo modal oscuro verde */
+            background: rgba(0, 0, 0, 0.85); /* Fondo modal negro semi-transparente */
             backdrop-filter: blur(20px);
             border-radius: 20px;
             padding: 3rem;
@@ -388,6 +408,7 @@
             animation: modalSlideIn 0.3s ease;
             border: 1px solid var(--border-alpha); /* Borde verde */
             box-shadow: 0 25px 80px rgba(0, 255, 127, 0.3); /* Sombra verde */
+            color: white; /* Asegurar texto blanco en el modal */
         }
 
         @keyframes modalSlideIn {
@@ -424,7 +445,7 @@
         }
 
         .modal-content::-webkit-scrollbar-track {
-            background: rgba(16, 26, 28, 0.8); /* Fondo oscuro scrollbar */
+            background: rgba(0, 0, 0, 0.8); /* Fondo oscuro scrollbar */
             border-radius: 10px;
             margin: 5px 0;
         }
@@ -432,7 +453,7 @@
         .modal-content::-webkit-scrollbar-thumb {
             background: linear-gradient(180deg, rgba(0, 255, 127, 0.6), rgba(0, 255, 127, 0.9)); /* Verde degrade */
             border-radius: 10px;
-            border: 2px solid rgba(16, 26, 28, 0.8);
+            border: 2px solid rgba(0, 0, 0, 0.8);
             transition: all 0.3s ease;
         }
 
@@ -444,7 +465,7 @@
         /* Scrollbar para Firefox (Verde) */
         .modal-content {
             scrollbar-width: thin;
-            scrollbar-color: rgba(0, 255, 127, 0.6) rgba(16, 26, 28, 0.8);
+            scrollbar-color: rgba(0, 255, 127, 0.6) rgba(0, 0, 0, 0.8);
         }
 
         /* Contenido del modal - diseño lineal (Verde) */
@@ -498,7 +519,7 @@
         }
 
         .content-section {
-            background: rgba(20, 30, 32, 0.6); /* Fondo de sección oscuro verde */
+            background: rgba(0, 0, 0, 0.6); /* Fondo de sección oscuro negro semi-transparente */
             border-radius: 12px;
             padding: 1.5rem;
             border: 1px solid rgba(0, 255, 127, 0.2); /* Borde verde */
@@ -531,7 +552,7 @@
 
         /* Galerías (Verde) */
         .gallery-section {
-            background: rgba(10, 15, 16, 0.8); /* Fondo de galería más oscuro */
+            background: rgba(0, 0, 0, 0.8); /* Fondo de galería más oscuro */
             border-radius: 12px;
             padding: 1.5rem;
             border: 1px solid rgba(0, 255, 127, 0.2); /* Borde verde */
@@ -631,8 +652,8 @@
                 transform: translateY(30px);
             }
             to {
-                opacity: 1;
                 transform: translateY(0);
+                opacity: 1;
             }
         }
 
@@ -677,7 +698,7 @@
             }
         }
 
-        /* LÍNEAS DIAGONALES PARALELAS (Verde) */
+        /* LÍNEAS DIAGONALES PARALELAS */
         .lines {
             position: fixed;
             top: -20%;
@@ -685,14 +706,14 @@
             right: 0;
             height: 140%;
             width: 120vw;
-            z-index: -98;
+            z-index: -98; 
             pointer-events: none;
             overflow: visible;
             transform: rotate(-15deg);
             transform-origin: center center;
         }
 
-.line {
+        .line {
             position: absolute;
             width: 2px;
             height: 140%;
@@ -710,6 +731,7 @@
             width: 100%;
             top: -50%;
             left: 0;
+            /* Mantenemos el brillo verde cayendo (la "estrella") */
             background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(0, 255, 127, 0.9) 75%, rgba(0, 255, 127, 1) 100%);
             animation: drop 3.5s infinite;
             animation-fill-mode: forwards;
@@ -768,31 +790,13 @@
         <div class="line"></div>
         <div class="line"></div>
         <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-        
     </div>
 
     <div class="container">
         <div class="header fade-in">
-
+            <div class="profile-photo">
+                <img src="images/fotoperfil.png" alt="Foto de perfil" style="width:100%; height:100%; border-radius:50%;">
+            </div>
             <h1 class="name">Rodrigo Álvarez Moizé</h1>
             <p class="description">
                 I am a game design and development student specialized in Unity and C#. I'm passionate about creating interactive and immersive experiences that captivate players. I'm always looking to learn new technologies and improve my skills to take my projects to the next level.
@@ -834,7 +838,7 @@
                     <div class="project-content">
                         <h3 class="project-title">Operació Plastelina</h3>
                         <p class="project-description">
-                            Video game developed fot the LUDI AWARTS 2025 competition
+                            Video game developed fot the LUDI AWARDS 2025 competition
                         </p>
                     </div>
                 </div>
@@ -872,7 +876,7 @@
     <div class="contact-section fade-in" id="contact">
         <h2 class="contact-title">Connect with me</h2>
         
-        <a href="mailto:your.rodrimoize@gmail.com" class="email-link" target="_blank">
+        <a href="mailto:rodrimoize@gmail.com" class="email-link" target="_blank">
             rodrimoize@gmail.com
         </a>
 
@@ -905,94 +909,94 @@
 
         // Projects data (se mantiene sin cambios)
         const projectsData = 
-    {
-        proyecto1: {
-            title: "The Asylum of Creation",
-            subtitle: "Indie horror game created for CITM GameJam 2024",
-            description: "Game developed for the 10th edition of CITM GameJam with the theme 'Trial and Error' with sub-themes 'The Button' and 'Replayability'",
-            role: "Gameplay Programmer & Designer",
-            technologies: ["Unity", "Blender", "Substance Painter"],
-            period: "1 Week",
-            features: [
-                "Retro artistic theme",
-                "Advanced replayability",
-                "Hidden narrative",
-                "Mild horror elements"
-            ],
-            contribution: "My primary responsibility was designing and implementing the core gameplay mechanics centered on the trial-and-error loop. Specifically, I engineered the random room system and the manager logic for setting difficulty and progression (game loop logic). Additionally, I contributed to the art department by creating the enemy character and their animations.",
-            media: [
-                { type: 'image', src: "images/AssylumOfCreation.png" },
-                { type: 'image', src: "images/GameJam/ENTRADA.png" },
-                { type: 'image', src: "images/GameJam/image.png" },
-                { type: 'image', src: "images/GameJam/LEVEL3.png" },
-                { type: 'video', src: "CIh03oIrMgc" }
-            ]
-        },
-        proyecto2: {
-            title: "Alien Cocktail",
-            subtitle: "VR cocktail preparation game",
-            description: "VR video game developed in Unity for a course that consists of creating different cocktails within a certain time to receive a certain score.",
-            role: "VR Developer ",
-            technologies: ["Unity", "Blender", "Substance Painter", "Visual Studio Code"],
-            period: "1 Month",
-            features: [
-                "VR immersive experience",
-                "Cocktail creation mechanics",
-                "Comic and modern art style",
-                "Offline multiplayer mode"
-            ],
-            contribution: "My main contribution involved developing the VR interaction system, specifically implementing the logic for ingredient manipulation and cocktail mixing. I also optimized the project for VR performance and integrated the scoring system used to evaluate player competence.",
-            media: [
-                { type: 'image', src: "images/AlienCocktail.png" },
-                { type: 'image', src: "images/AlienCocktail/AlienCocktail.png" },
-                { type: 'video', src: "XdlGXvA7eR4" }
-            ]
-        },
-        proyecto3: {
-            title: "Warhammer 40K: The Last Marine",
-            subtitle: "THE LAST MARINE",
-            description: "Video game created in a proprietary engine called Coffee Engine developed for Project III course with Warhammer 40K theme. A team of 40 people divided by different departments carried out this project.",
-            role: "Gameplay and AI Programmer",
-            technologies: ["Coffee Engine", "Visual Studio", "Lua", "Blender"],
-            period: "6 Months",
-            features: [
-                "Third-person action game",
-                "Proprietary engine development",
-                "Warhammer 40K universe",
-                "Lua scripting implementation"
-            ],
-            contribution: `I was responsible for implementing the AI behavior and navigation for the enemy Support unit, and initiated the primary interaction mechanics for the Enemy Tank and Boss. Additionally, I provided support for other general AI behaviors as required by the project.`,
-            media: [                    
-                { type: 'video', src: "pNp_OPTwnTo" },
-                { type: 'image', src: "images/w40k.png" }
-            ]
-        },
-        proyecto4: {
-            title: "Operació Plastelina",
-            subtitle: "Interactive math game for children aged 6-8",
-            description: "Video game created for the LUDI AWARTS 2025 competition with the theme of 'A curricular video game focused on children aged 6-8' so we decided to make an interactive math game using figures as numbers and operations as attacks",
-            role: "Gameplay and AI Programmer & Game Designer",
-            technologies: ["Unity", "Visual Studio", "C#", "Blender"],
-            period: "1 Month",
-            features: [
-                "Strategy and educational game",
-                "Funny cartoon art style",
-                "Math learning mechanics",
-                "Interactive gameplay"
-            ],
-            contribution: `I was responsible for implementing the AI behavior of the opponent and managing the character logic and interactions. I developed all core interactive card mechanics and collaborated significantly in the Game Design phase, defining the game's mechanics and dynamics.`,
-            media: [                    
-                { type: 'video', src: "0W4oH_PKdxg" },
-                { type: 'image', src: "images/OperacioPlastelina/1.png" },
-                { type: 'image', src: "images/OperacioPlastelina/2.png" },
-                { type: 'image', src: "images/OperacioPlastelina/3.png" },
-                { type: 'image', src: "images/OperacioPlastelina/4.png" },
-                { type: 'image', src: "images/OperacioPlastelina/5.png" },
-                { type: 'image', src: "images/OperacioPlastelina/6.png" },
-                { type: 'image', src: "images/OperacioPlastelina/7.png" }
-            ]
-        }
-    };
+        {
+            proyecto1: {
+                title: "The Asylum of Creation",
+                subtitle: "Indie horror game created for CITM GameJam 2024",
+                description: "Game developed for the 10th edition of CITM GameJam with the theme 'Trial and Error' with sub-themes 'The Button' and 'Replayability'",
+                role: "Gameplay Programmer & Designer",
+                technologies: ["Unity", "Blender", "Substance Painter"],
+                period: "1 Week",
+                features: [
+                    "Retro artistic theme",
+                    "Advanced replayability",
+                    "Hidden narrative",
+                    "Mild horror elements"
+                ],
+                contribution: "My primary responsibility was designing and implementing the core gameplay mechanics centered on the trial-and-error loop. Specifically, I engineered the random room system and the manager logic for setting difficulty and progression (game loop logic). Additionally, I contributed to the art department by creating the enemy character and their animations.",
+                media: [
+                    { type: 'image', src: "images/AssylumOfCreation.png" },
+                    { type: 'image', src: "images/GameJam/ENTRADA.png" },
+                    { type: 'image', src: "images/GameJam/image.png" },
+                    { type: 'image', src: "images/GameJam/LEVEL3.png" },
+                    { type: 'video', src: "CIh03oIrMgc" }
+                ]
+            },
+            proyecto2: {
+                title: "Alien Cocktail",
+                subtitle: "VR cocktail preparation game",
+                description: "VR video game developed in Unity for a course that consists of creating different cocktails within a certain time to receive a certain score.",
+                role: "VR Developer ",
+                technologies: ["Unity", "Blender", "Substance Painter", "Visual Studio Code"],
+                period: "1 Month",
+                features: [
+                    "VR immersive experience",
+                    "Cocktail creation mechanics",
+                    "Comic and modern art style",
+                    "Offline multiplayer mode"
+                ],
+                contribution: "My main contribution involved developing the VR interaction system, specifically implementing the logic for ingredient manipulation and cocktail mixing. I also optimized the project for VR performance and integrated the scoring system used to evaluate player competence.",
+                media: [
+                    { type: 'image', src: "images/AlienCocktail.png" },
+                    { type: 'image', src: "images/AlienCocktail/AlienCocktail.png" },
+                    { type: 'video', src: "XdlGXvA7eR4" }
+                ]
+            },
+            proyecto3: {
+                title: "Warhammer 40K: The Last Marine",
+                subtitle: "THE LAST MARINE",
+                description: "Video game created in a proprietary engine called Coffee Engine developed for Project III course with Warhammer 40K theme. A team of 40 people divided by different departments carried out this project.",
+                role: "Gameplay and AI Programmer",
+                technologies: ["Coffee Engine", "Visual Studio", "Lua", "Blender"],
+                period: "6 Months",
+                features: [
+                    "Third-person action game",
+                    "Proprietary engine development",
+                    "Warhammer 40K universe",
+                    "Lua scripting implementation"
+                ],
+                contribution: `I was responsible for implementing the AI behavior and navigation for the enemy Support unit, and initiated the primary interaction mechanics for the Enemy Tank and Boss. Additionally, I provided support for other general AI behaviors as required by the project.`,
+                media: [                    
+                    { type: 'video', src: "pNp_OPTwnTo" },
+                    { type: 'image', src: "images/w40k.png" }
+                ]
+            },
+            proyecto4: {
+                title: "Operació Plastelina",
+                subtitle: "Interactive math game for children aged 6-8",
+                description: "Video game created for the LUDI AWARDS 2025 competition with the theme of 'A curricular video game focused on children aged 6-8' so we decided to make an interactive math game using figures as numbers and operations as attacks",
+                role: "Gameplay and AI Programmer & Game Designer",
+                technologies: ["Unity", "Visual Studio", "C#", "Blender"],
+                period: "1 Month",
+                features: [
+                    "Strategy and educational game",
+                    "Funny cartoon art style",
+                    "Math learning mechanics",
+                    "Interactive gameplay"
+                ],
+                contribution: `I was responsible for implementing the AI behavior of the opponent and managing the character logic and interactions. I developed all core interactive card mechanics and collaborated significantly in the Game Design phase, defining the game's mechanics and dynamics.`,
+                media: [                    
+                    { type: 'video', src: "0W4oH_PKdxg" },
+                    { type: 'image', src: "images/OperacioPlastelina/1.png" },
+                    { type: 'image', src: "images/OperacioPlastelina/2.png" },
+                    { type: 'image', src: "images/OperacioPlastelina/3.png" },
+                    { type: 'image', src: "images/OperacioPlastelina/4.png" },
+                    { type: 'image', src: "images/OperacioPlastelina/5.png" },
+                    { type: 'image', src: "images/OperacioPlastelina/6.png" },
+                    { type: 'image', src: "images/OperacioPlastelina/7.png" }
+                ]
+            }
+        };
 
         // Functions for modals (sin cambios)
         function openProjectModal(projectType) {
@@ -1023,24 +1027,6 @@
                             <div class="meta-label">Development Period</div>
                             <div class="meta-value">${project.period}</div>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="content-section">
-                    <h3 class="section-title">About the Project</h3>
-                    <div class="section-content">
-                        <p>${project.description}</p>
-                        <h4>Main Features:</h4>
-                        <ul>
-                            ${project.features.map(feature => `<li>${feature}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="content-section">
-                    <h3 class="section-title">My Contribution</h3>
-                    <div class="section-content">
-                        <p>${project.contribution}</p>
                     </div>
                 </div>
                 
@@ -1095,6 +1081,24 @@
                         ` : ''}
                     </div>
                 ` : ''}
+                
+                <div class="content-section">
+                    <h3 class="section-title">About the Project</h3>
+                    <div class="section-content">
+                        <p>${project.description}</p>
+                        <h4>Main Features:</h4>
+                        <ul>
+                            ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h3 class="section-title">My Contribution</h3>
+                    <div class="section-content">
+                        <p>${project.contribution}</p>
+                    </div>
+                </div>
             `;
             document.getElementById('projectModal').classList.add('show');
         }
