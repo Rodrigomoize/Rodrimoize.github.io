@@ -900,94 +900,95 @@
         let currentVideoIndex = 0;
 
         // Projects data (se mantiene sin cambios)
-        const projectsData = {
-            proyecto1: {
-                title: "The Asylum of Creation",
-                subtitle: "Indie horror game created for CITM GameJam 2024",
-                description: "Game developed for the 10th edition of CITM GameJam with the theme 'Trial and Error' with sub-themes 'The Button' and 'Replayability'",
-                role: "Game Developer & Designer",
-                technologies: ["Unity", "Blender", "Substance Painter"],
-                period: "1 Week",
-                features: [
-                    "Retro artistic theme",
-                    "Advanced replayability",
-                    "Hidden narrative",
-                    "Mild horror elements"
-                ],
-                contribution: "In this project, I was responsible for designing and implementing the core gameplay mechanics that revolved around trial and error. In the gameplay part, I created the randomRoom system and the manager to set difficulty and progression, also the logic for the gameLoop. Additionally, I contributed in the art by creating the enemy character, and also his animations",
-                media: [
-                    { type: 'image', src: "images/AssylumOfCreation.png" },
-                    { type: 'image', src: "images/GameJam/ENTRADA.png" },
-                    { type: 'image', src: "images/GameJam/image.png" },
-                    { type: 'image', src: "images/GameJam/LEVEL3.png" },
-                    { type: 'video', src: "CIh03oIrMgc" }
-                ]
-            },
-            proyecto2: {
-                title: "Alien Cocktail",
-                subtitle: "VR cocktail preparation game",
-                description: "VR video game developed in Unity for a course that consists of creating different cocktails within a certain time to receive a certain score.",
-                role: "VR Developer ",
-                technologies: ["Unity", "Blender", "Substance Painter", "Visual Studio Code"],
-                period: "1 Month",
-                features: [
-                    "VR immersive experience",
-                    "Cocktail creation mechanics",
-                    "Comic and modern art style",
-                    "Offline multiplayer mode"
-                ],
-                contribution: "My main contribution was developing the VR interaction system that have the logic for ingredient manipulation and cocktail mixing. I optimized the performance for VR and implemented the scoring system that evaluates the player's cocktail-making skills.",
-                media: [
-                    { type: 'image', src: "images/AlienCocktail.png" },
-                    { type: 'image', src: "images/AlienCocktail/AlienCocktail.png" },
-                    { type: 'video', src: "XdlGXvA7eR4" }
-                ]
-            },
-            proyecto3: {
-                title: "Warhammer 40K: The Last Marine",
-                subtitle: "THE LAST MARINE",
-                description: "Video game created in a proprietary engine called Coffee Engine developed for Project III course with Warhammer 40K theme. A team of 40 people divided by different departments carried out this project.",
-                role: "Gameplay and AI Programmer",
-                technologies: ["Coffee Engine", "Visual Studio", "Lua", "Blender"],
-                period: "6 Months",
-                features: [
-                    "Third-person action game",
-                    "Proprietary engine development",
-                    "Warhammer 40K universe",
-                    "Lua scripting implementation"
-                ],
-                contribution: `I was responsible for implementing the AI behavior and navigation for the enemy Support and worked on the first interaction for the enemy Tank, Enemy boss and helped with other AI behaviors as needed.`,
-                media: [                    
-                    { type: 'video', src: "pNp_OPTwnTo" },
-                    { type: 'image', src: "images/w40k.png" }
-                ]
-            },
-            proyecto4: {
-                title: "Operació Plastilina",
-                subtitle: "Interactive math game for children aged 6-8",
-                description: "Video game created for the LUDI AWARTS 2025 competition with the theme of 'A curricular video game focused on children aged 6-8' so we decided to make an interactive math game using figures as numbers and operations as attacks",
-                role: "Game Designer & Gameplay and AI Programmer",
-                technologies: ["Unity", "Visual Studio", "C#", "Blender"],
-                period: "1 Month",
-                features: [
-                    "Strategy and educational game",
-                    "Funny cartoon art style",
-                    "Math learning mechanics",
-                    "Interactive gameplay"
-                ],
-                contribution: `I was responsible for implementing the AI behavior of your opponent, the characters and also all the logic between them.I did all the mechanics with the interactive cards. Also collaborated in the game design, defining the mechanics and dynamics of the game.`,
-                media: [                    
-                    { type: 'video', src: "0W4oH_PKdxg" },
-                    { type: 'image', src: "images/OperacioPlastelina/1.png" },
-                    { type: 'image', src: "images/OperacioPlastelina/2.png" },
-                    { type: 'image', src: "images/OperacioPlastelina/3.png" },
-                    { type: 'image', src: "images/OperacioPlastelina/4.png" },
-                    { type: 'image', src: "images/OperacioPlastelina/5.png" },
-                    { type: 'image', src: "images/OperacioPlastelina/6.png" },
-                    { type: 'image', src: "images/OperacioPlastelina/7.png" }
-                ]
-            }
-        };
+        const projectsData = 
+    {
+        proyecto1: {
+            title: "The Asylum of Creation",
+            subtitle: "Indie horror game created for CITM GameJam 2024",
+            description: "Game developed for the 10th edition of CITM GameJam with the theme 'Trial and Error' with sub-themes 'The Button' and 'Replayability'",
+            role: "Game Developer & Designer",
+            technologies: ["Unity", "Blender", "Substance Painter"],
+            period: "1 Week",
+            features: [
+                "Retro artistic theme",
+                "Advanced replayability",
+                "Hidden narrative",
+                "Mild horror elements"
+            ],
+            contribution: "My primary responsibility was designing and implementing the core gameplay mechanics centered on the trial-and-error loop. Specifically, I engineered the random room system and the manager logic for setting difficulty and progression (game loop logic). Additionally, I contributed to the art department by creating the enemy character and their animations.",
+            media: [
+                { type: 'image', src: "images/AssylumOfCreation.png" },
+                { type: 'image', src: "images/GameJam/ENTRADA.png" },
+                { type: 'image', src: "images/GameJam/image.png" },
+                { type: 'image', src: "images/GameJam/LEVEL3.png" },
+                { type: 'video', src: "CIh03oIrMgc" }
+            ]
+        },
+        proyecto2: {
+            title: "Alien Cocktail",
+            subtitle: "VR cocktail preparation game",
+            description: "VR video game developed in Unity for a course that consists of creating different cocktails within a certain time to receive a certain score.",
+            role: "VR Developer ",
+            technologies: ["Unity", "Blender", "Substance Painter", "Visual Studio Code"],
+            period: "1 Month",
+            features: [
+                "VR immersive experience",
+                "Cocktail creation mechanics",
+                "Comic and modern art style",
+                "Offline multiplayer mode"
+            ],
+            contribution: "My main contribution involved developing the VR interaction system, specifically implementing the logic for ingredient manipulation and cocktail mixing. I also optimized the project for VR performance and integrated the scoring system used to evaluate player competence.",
+            media: [
+                { type: 'image', src: "images/AlienCocktail.png" },
+                { type: 'image', src: "images/AlienCocktail/AlienCocktail.png" },
+                { type: 'video', src: "XdlGXvA7eR4" }
+            ]
+        },
+        proyecto3: {
+            title: "Warhammer 40K: The Last Marine",
+            subtitle: "THE LAST MARINE",
+            description: "Video game created in a proprietary engine called Coffee Engine developed for Project III course with Warhammer 40K theme. A team of 40 people divided by different departments carried out this project.",
+            role: "Gameplay and AI Programmer",
+            technologies: ["Coffee Engine", "Visual Studio", "Lua", "Blender"],
+            period: "6 Months",
+            features: [
+                "Third-person action game",
+                "Proprietary engine development",
+                "Warhammer 40K universe",
+                "Lua scripting implementation"
+            ],
+            contribution: `I was responsible for implementing the AI behavior and navigation for the enemy Support unit, and initiated the primary interaction mechanics for the Enemy Tank and Boss. Additionally, I provided support for other general AI behaviors as required by the project.`,
+            media: [                    
+                { type: 'video', src: "pNp_OPTwnTo" },
+                { type: 'image', src: "images/w40k.png" }
+            ]
+        },
+        proyecto4: {
+            title: "Operació Plastelina",
+            subtitle: "Interactive math game for children aged 6-8",
+            description: "Video game created for the LUDI AWARTS 2025 competition with the theme of 'A curricular video game focused on children aged 6-8' so we decided to make an interactive math game using figures as numbers and operations as attacks",
+            role: "Game Designer & Gameplay and AI Programmer",
+            technologies: ["Unity", "Visual Studio", "C#", "Blender"],
+            period: "1 Month",
+            features: [
+                "Strategy and educational game",
+                "Funny cartoon art style",
+                "Math learning mechanics",
+                "Interactive gameplay"
+            ],
+            contribution: `I was responsible for implementing the AI behavior of the opponent and managing the character logic and interactions. I developed all core interactive card mechanics and collaborated significantly in the Game Design phase, defining the game's mechanics and dynamics.`,
+            media: [                    
+                { type: 'video', src: "0W4oH_PKdxg" },
+                { type: 'image', src: "images/OperacioPlastelina/1.png" },
+                { type: 'image', src: "images/OperacioPlastelina/2.png" },
+                { type: 'image', src: "images/OperacioPlastelina/3.png" },
+                { type: 'image', src: "images/OperacioPlastelina/4.png" },
+                { type: 'image', src: "images/OperacioPlastelina/5.png" },
+                { type: 'image', src: "images/OperacioPlastelina/6.png" },
+                { type: 'image', src: "images/OperacioPlastelina/7.png" }
+            ]
+        }
+    };
 
         // Functions for modals (sin cambios)
         function openProjectModal(projectType) {
